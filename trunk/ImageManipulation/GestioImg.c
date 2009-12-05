@@ -56,19 +56,21 @@ void Header(int *dimensions, FILE *sortida, char *Comentari)
 
 void OmplirMatriuFree(double *Parametres, int *dimensions,double *z, double *RGB, double ***Imatge, FILE *sortida)
 {
-  /*
-    Aquesta versió simplement escriu començant per la cantonada
-    superior esquerra i ignora els continguts de la matriu. Afegeixo
-    un paràmetre a la versió anterior, que és el fitxer. A més passo
-    l'RGB a double i la matriu imatge també. Els paràmetres són:
-    Coordenada superior esquerra (Re i Im), amplada i alçada.
-    Dimensions són nombre de pixels d'amplada i alçada respectivament
-    RGB conté el color associat al punt z, Imatge és int[4][x][y]
-  */
-	
-  int x,y;
-  //if((z[0]>Parametres[0]+Parametres[2])||z[0]<Parametres[0]){return;}
-  //if((z[1]>Parametres[1])||z[1]<Parametres[1]-Parametres[3]){return;}
+  /* This version starts in upper left corner, and ignores matrix
+     contents. Expected values: upper left coordinate (Real and
+     imaginary part, assumed), width and height (x,y,w,h)=Parametres.
+     Dimensions is the pixel size, z is the point and RGB is the
+     color. Imatge is not used, just for "almost compatibility" with
+     the matrix version.  */
+  
+  /* Aquesta versió simplement escriu començant per la cantonada
+     superior esquerra i ignora els continguts de la matriu. Afegeixo
+     un paràmetre a la versió anterior, que és el fitxer. A més passo
+     l'RGB a double i la matriu imatge també. Els paràmetres són:
+     Coordenada superior esquerra (Re i Im), amplada i alçada.
+     Dimensions són nombre de pixels d'amplada i alçada respectivament
+     RGB conté el color associat al punt z, Imatge és int[4][x][y]  */
+
   fprintf(sortida,"%3.0lf %3.0lf %3.0lf\n",RGB[0],RGB[1],RGB[2]);
   return;
 }
