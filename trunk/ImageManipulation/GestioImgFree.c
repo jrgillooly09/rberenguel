@@ -21,7 +21,6 @@ void OmplirMatriuFree(double *Parametres, int *dimensions,double *z, double *RGB
     RGB conté el color associat al punt z, Imatge és int[4][x][y]
   */
 	
-  int x,y;
   if((z[0]>Parametres[0]+Parametres[2])||z[0]<Parametres[0]){return;}
   if((z[1]>Parametres[1])||z[1]<Parametres[1]-Parametres[3]){return;}
   x=(int)floor((z[0]-Parametres[0])/Parametres[2]*dimensions[0]+0.1);
