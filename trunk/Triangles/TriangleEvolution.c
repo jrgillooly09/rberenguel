@@ -28,13 +28,14 @@
 
 int Generations=100000;
 int MaximumSteps=10;
-int RANDOM=30;
+int RANDOM=10;
 #define BigMaximumSteps 5*MaximumSteps;
 
 
 int VERBOSE=0, DEBUG=0;
 int RES = 150;
 int NumTriangles = 50;
+int MaxTriangles = 100;
 double BaseColor[3]={100,100,100};
 double GlobalChanges=0, GlobalSwap=0;
 
@@ -222,10 +223,10 @@ int TriangleAdder(double *Triangles, double *Fit, int *TriangleCount, double ***
       
   int i,steps, LocalTriangleCount;
   double *TrianglesChild, NewFit=0;
-  TrianglesChild=(double*)malloc(NumTriangles*10*sizeof(double));
+  TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
   if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
   steps=-1;
-  for(i=0;i<10*NumTriangles;i++){
+  for(i=0;i<10*MaxTriangles;i++){
     TrianglesChild[i]=Triangles[i];
   }
   LocalTriangleCount=*TriangleCount+1;
@@ -244,7 +245,7 @@ int TriangleAdder(double *Triangles, double *Fit, int *TriangleCount, double ***
 	
     //If we get here, there is a new good approximation. Rewrite triangles
     *Fit=NewFit;
-    for(i=0;i<10*NumTriangles;i++){
+    for(i=0;i<10*MaxTriangles;i++){
       Triangles[i]=TrianglesChild[i];
     }
     *TriangleCount=LocalTriangleCount;
@@ -258,13 +259,13 @@ int TrianglePruner(double *Triangles, double *Fit, int *TriangleCount, double **
       
   int i,m, LocalTriangleCount;
   double *TrianglesChild, NewFit=0;
-  TrianglesChild=(double*)malloc(NumTriangles*10*sizeof(double));
+  TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
   if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
   LocalTriangleCount=*TriangleCount;
   if(LocalTriangleCount<1){return 0;}
       
   for(m=0;m<LocalTriangleCount-1;m++){
-    for(i=0;i<10*NumTriangles;i++){
+    for(i=0;i<10*MaxTriangles;i++){
       TrianglesChild[i]=Triangles[i];
     }
     RemoveTriangle(TrianglesChild+10*m, LocalTriangleCount);
@@ -275,7 +276,7 @@ int TrianglePruner(double *Triangles, double *Fit, int *TriangleCount, double **
       printf("%6.3lf \t#Tr: %d\n", NewFit,LocalTriangleCount-1);
     }
     if(NewFit<*Fit){
-      for(i=0;i<10*NumTriangles;i++){
+      for(i=0;i<10*MaxTriangles;i++){
 	Triangles[i]=TrianglesChild[i];
       }
       *Fit=NewFit;
@@ -291,7 +292,7 @@ int TriangleSwapper(double *Triangles, double *Fit, int *TriangleCount, double *
       
   int i,m,n,steps;
   double *TrianglesChild, NewFit=0;
-  TrianglesChild=(double*)malloc(NumTriangles*10*sizeof(double));
+  TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
   if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
 
   steps=-1;
@@ -301,7 +302,7 @@ int TriangleSwapper(double *Triangles, double *Fit, int *TriangleCount, double *
 
   for(m=0;m<*TriangleCount-1;m++){
     for(n=m+1;n<*TriangleCount;n++){
-      for(i=0;i<10*NumTriangles;i++){
+      for(i=0;i<10*MaxTriangles;i++){
 	TrianglesChild[i]=Triangles[i];
       }
       Swap2Triangle(TrianglesChild, m,n);
@@ -312,7 +313,7 @@ int TriangleSwapper(double *Triangles, double *Fit, int *TriangleCount, double *
 	printf("%6.3lf \t#Tr: %d\n", NewFit,*TriangleCount);
       }
       if(NewFit<*Fit){
-	for(i=0;i<10*NumTriangles;i++){
+	for(i=0;i<10*MaxTriangles;i++){
 	  Triangles[i]=TrianglesChild[i];
 	}
 	*Fit=NewFit;
@@ -330,13 +331,13 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
   int i, j,k, steps, escaped=0, localMaxSteps;  
   double *TrianglesChild, NewFit;
   localMaxSteps=flag?(rand()%MaximumSteps):(rand()%MaximumSteps);
-  TrianglesChild=(double*)malloc(NumTriangles*10*sizeof(double));
+  TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
   if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
 
   k=rand()%*TriangleCount;
   for(j=0;j<(rand()%(*TriangleCount+1));j++){
     steps=-1;
-    for(i=0;i<10*NumTriangles;i++){
+    for(i=0;i<10*MaxTriangles;i++){
       TrianglesChild[i]=Triangles[i];
     }
     do{
@@ -359,7 +360,7 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
     if(!escaped){
       //If we get here, there is a new good approximation. Rewrite triangles
       *Fit=NewFit;
-      for(i=0;i<10*NumTriangles;i++){
+      for(i=0;i<10*MaxTriangles;i++){
 	Triangles[i]=TrianglesChild[i];
       }
       return 1;
@@ -403,7 +404,7 @@ void InflateTriangles(double *Normalised, int TriangleCount, int Factor)
 
 int main (int argc, char *argv[]){
   int i,j,k, Evolved=0, Changed=0, TriangleCount, GenCount, Reverting=0;
-  int dimensions[2]={0, 0}, OutputRes;
+  int dimensions[2]={0, 0}, OutputRes, ThresholdFit=9000;
   FILE *input, *output;
   char Filename[100], TempString[300];
   double ***image, ***AuxMatrix, ***AuxMatrix2, init, PNMColor; 
@@ -464,8 +465,8 @@ int main (int argc, char *argv[]){
 	  
 	  break;
 	case 5:
-	  NumTriangles=atoi(argv[argc+1]);
-	  printf("Maximum number of triangles selected: %d\n",NumTriangles);
+	  MaxTriangles=atoi(argv[argc+1]);
+	  printf("Maximum number of triangles selected: %d\n",MaxTriangles);
 	  break;
 	case 6:
 	  MaximumSteps=atoi(argv[argc+1]);
@@ -486,8 +487,8 @@ int main (int argc, char *argv[]){
   dimensions[0]=RES;
   dimensions[1]=RES;
 
-  Triangles=(double*)malloc(10*NumTriangles*sizeof(double));
-  NormalisedTriangles=(double*)malloc(10*NumTriangles*sizeof(double));
+  Triangles=(double*)malloc(10*MaxTriangles*sizeof(double));
+  NormalisedTriangles=(double*)malloc(10*MaxTriangles*sizeof(double));
 
 
   srand ( time(0) );
@@ -592,7 +593,7 @@ int main (int argc, char *argv[]){
     }
   }
   
-  for(j=0;j<NumTriangles;j++){
+  for(j=0;j<MaxTriangles;j++){
     RandBlack(Triangles+10*j);
   }
 
@@ -608,14 +609,18 @@ int main (int argc, char *argv[]){
   /*   sprintf(Filename, "Test1.dat", i); */
   /*   output=fopen(Filename, "w"); */
   /*   GenerarImatge(dimensions, measureDif, output,NULL); */
-
-  system("sleep 1");
+  NumTriangles=MaxTriangles/2;
+  printf("Initial number of triangles: %d, maximal number of triangles %d\n\n",NumTriangles, MaxTriangles);
+  system("sleep 2");
   k=0;
+
+  ActualFit=1e10;
   for(GenCount=0;GenCount<Generations;GenCount++){
- 
+   
     GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
     ActualFit=MatrixDistance(RES, AuxMatrix, image);
-    if(VERBOSE){printf("BEGINNING: \t F1 %6.3lf \t #Tr %d\n",ActualFit, TriangleCount);}
+    if(ActualFit<ThresholdFit){NumTriangles=MaxTriangles;}
+    if(VERBOSE){printf("BEGINNING: \t F1 %6.3lf \t #Tr %d Max #Tr %d\n",ActualFit, TriangleCount, NumTriangles);}
 
     //Adding Triangles
     if(VERBOSE){printf("Generation: %10d\n",GenCount);}
