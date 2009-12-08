@@ -28,7 +28,7 @@
 
 int Generations=100000;
 int MaximumSteps=10;
-int RANDOM=1;
+int RANDOM=120;
 #define BigMaximumSteps 5*MaximumSteps;
 
 
@@ -55,6 +55,27 @@ void RandTriangle(double *TriangleSet){
   TriangleSet[j++]=aux>1?1:aux; //alpha
 }
 
+void RandTrianglePosition(double *TriangleSet){
+  int j=0;
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x1
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y1
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x2
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y2
+  TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*RES; // x3
+  TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*RES; // y3
+}
+
+void RandTriangleColors(double *TriangleSet){
+  TriangleSet[6]=rand()/((double)(RAND_MAX)+1)*255.; //c1
+  TriangleSet[7]=rand()/((double)(RAND_MAX)+1)*255.; //c2
+  TriangleSet[8]=rand()/((double)(RAND_MAX)+1)*255.; //c3
+}
+
+void RandTriangleAlpha(double *TriangleSet){
+  double aux;
+  aux=0.2+1.*(rand()/((double)(RAND_MAX)+1));
+  TriangleSet[9]=aux>1?1:aux; //alpha
+}
 
 void RandBlack(double *TriangleSet){
   int j=0;
@@ -321,8 +342,11 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
     do{
       escaped=0;
       steps++;
-      if(steps>local){escaped=1;break;}
-      RandTriangle(TrianglesChild+10*k);
+      if(steps>localMaxSteps){escaped=1;break;}
+      if(rand()%2==0){RandTrianglePosition(TrianglesChild+10*k);}
+      else{
+	if(rand()%3==0){RandTriangleAlpha(TrianglesChild+10*k);}else{
+	  RandTriangleColors(TrianglesChild+10*k);}}
       GenerateMatrix(TrianglesChild, matrix, *TriangleCount, RES);
       NewFit=MatrixDistance(RES, matrix, image);
       if(VERBOSE){
