@@ -404,12 +404,12 @@ void InflateTriangles(double *Normalised, int TriangleCount, int Factor)
 
 int main (int argc, char *argv[]){
   int i,j,k, Evolved=0, Changed=0, TriangleCount, GenCount, Reverting=0;
-  int dimensions[2]={0, 0}, OutputRes, ThresholdFit=9000;
+  int dimensions[2]={0, 0}, OutputRes, TriangStepping, FitThresholdAdjuster;
   FILE *input, *output;
   char Filename[100], TempString[300];
   double ***image, ***AuxMatrix, ***AuxMatrix2, init, PNMColor; 
   double *Triangles=NULL, *NormalisedTriangles=NULL;
-  double ActualFit;
+  double ActualFit, FitStepping, FitThreshold;
   
   char *Arg[12]={"-h","-file","-continue", "-revert", "-outputres", "-numtriangles", "-maxsteps", "-maxgenerations", "-verbose", "\n"};
 
@@ -600,6 +600,10 @@ int main (int argc, char *argv[]){
   TriangleCount=0;
   GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
   init=MatrixDistance(RES, AuxMatrix, image);
+  FitStepping=init/7.;
+  TriangStepping=MaxTriangles/20;
+  FitThreshold=init-FitStepping;
+  FitThresholdAdjuster=1;
   /*   sprintf(Filename, "Test0.dat", i); */
   /*   output=fopen(Filename, "w"); */
   /*   GenerarImatge(dimensions, measureDif, output,NULL); */
@@ -609,8 +613,9 @@ int main (int argc, char *argv[]){
   /*   sprintf(Filename, "Test1.dat", i); */
   /*   output=fopen(Filename, "w"); */
   /*   GenerarImatge(dimensions, measureDif, output,NULL); */
-  NumTriangles=MaxTriangles/2;
+  NumTriangles=TriangStepping;
   printf("Initial number of triangles: %d, maximal number of triangles %d\n\n",NumTriangles, MaxTriangles);
+  printf("Initial fit %6.3lf, Fit Step %6.3lf\n\n",init, FitStepping);
   system("sleep 2");
   k=0;
 
@@ -619,8 +624,13 @@ int main (int argc, char *argv[]){
    
     GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
     ActualFit=MatrixDistance(RES, AuxMatrix, image);
-    if(ActualFit<ThresholdFit){NumTriangles=MaxTriangles;}
-    if(VERBOSE){printf("BEGINNING: \t F1 %6.3lf \t #Tr %d Max #Tr %d\n",ActualFit, TriangleCount, NumTriangles);}
+    if(ActualFit<FitThreshold){
+      FitThreshold-=FitStepping/FitThresholdAdjuster;
+      NumTriangles+=TriangStepping;
+      FitThresholdAdjuster++;
+      if(VERBOSE){printf("IMPROVING: Adding triangles, reducing threshold\n");}
+    }
+    if(VERBOSE){printf("BEGINNING: \t F1 %6.3lf \t Threshold: %6.3lf \t#Tr %d Max #Tr %d\n",ActualFit, FitThreshold, TriangleCount, NumTriangles);}
 
     //Adding Triangles
     if(VERBOSE){printf("Generation: %10d\n",GenCount);}
