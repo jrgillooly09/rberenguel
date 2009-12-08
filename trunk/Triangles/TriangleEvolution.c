@@ -16,7 +16,7 @@
 // along with this program. If not, see
 // <http://www.gnu.org/licenses/>.
 
-// 20091208@14:43
+// 20091208@16:50
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,7 +28,7 @@
 
 int Generations=100000;
 int MaximumSteps=10;
-int RANDOM=120;
+int RANDOM=30;
 #define BigMaximumSteps 5*MaximumSteps;
 
 
@@ -628,9 +628,9 @@ int main (int argc, char *argv[]){
     if(Changed||(RANDOM-1)||(TriangleCount>=NumTriangles)){
       if(rand()%RANDOM==0)
 	TriangleSwapper(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
-      if(rand()%RANDOM==0||(TriangleCount>=NumTriangles))
+      if(rand()%RANDOM==0)
 	TrianglePruner(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
-      if(VERBOSE){printf("Generation: %10d\n",GenCount);}
+      if(VERBOSE){printf("Generation: %10d\n",GenCount, GenCount);}
     }
 
     if(VERBOSE&&DEBUG){
