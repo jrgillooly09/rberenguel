@@ -409,7 +409,7 @@ int main (int argc, char *argv[]){
   char Filename[100], TempString[300];
   double ***image, ***AuxMatrix, ***AuxMatrix2, init, PNMColor; 
   double *Triangles=NULL, *NormalisedTriangles=NULL;
-  double ActualFit, FitStepping, FitThreshold;
+  double ActualFit, FitStepping, FitThreshold, FitLimit;
   
   char *Arg[12]={"-h","-file","-continue", "-revert", "-outputres", "-numtriangles", "-maxsteps", "-maxgenerations", "-verbose", "\n"};
 
@@ -600,9 +600,10 @@ int main (int argc, char *argv[]){
   TriangleCount=0;
   GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
   init=MatrixDistance(RES, AuxMatrix, image);
-  FitStepping=init/7.;
+  FitStepping=init/5.;
   TriangStepping=MaxTriangles/20;
-  FitThreshold=init-FitStepping;
+  FitThreshold=0.1*init+init-FitStepping;
+  FitLimit=0.15*init;
   FitThresholdAdjuster=1;
   /*   sprintf(Filename, "Test0.dat", i); */
   /*   output=fopen(Filename, "w"); */
@@ -625,7 +626,7 @@ int main (int argc, char *argv[]){
     GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
     ActualFit=MatrixDistance(RES, AuxMatrix, image);
     if(ActualFit<FitThreshold){
-      FitThreshold-=FitStepping/FitThresholdAdjuster;
+      FitThreshold=FitThreshold-FitStepping*((FitThreshold-FitLimit)>0?(FitThreshold-FitLimit):20)/(0.1*init+init-FitStepping);
       NumTriangles+=TriangStepping;
       FitThresholdAdjuster++;
       if(VERBOSE){printf("IMPROVING: Adding triangles, reducing threshold\n");}
