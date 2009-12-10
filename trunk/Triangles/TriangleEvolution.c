@@ -347,7 +347,8 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
       if(rand()%2==0){RandTrianglePosition(TrianglesChild+10*k);}
       else{
 	if(rand()%3==0){RandTriangleAlpha(TrianglesChild+10*k);}else{
-	  RandTriangleColors(TrianglesChild+10*k);}}
+	  if(rand()%3==0){RandTriangle(TrianglesChild+10*k);}else{
+	    RandTriangleColors(TrianglesChild+10*k);}}}
       GenerateMatrix(TrianglesChild, matrix, *TriangleCount, RES);
       NewFit=MatrixDistance(RES, matrix, image);
       if(VERBOSE){
@@ -628,6 +629,7 @@ int main (int argc, char *argv[]){
     if(ActualFit<FitThreshold){
       FitThreshold=FitThreshold-FitStepping*((FitThreshold-FitLimit)>0?(FitThreshold-FitLimit):20)/(0.1*init+init-FitStepping);
       NumTriangles+=TriangStepping;
+      if(NumTriangles>MaxTriangles){NumTriangles=MaxTriangles;}
       FitThresholdAdjuster++;
       if(VERBOSE){printf("IMPROVING: Adding triangles, reducing threshold\n");}
     }
