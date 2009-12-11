@@ -104,6 +104,26 @@ void Swap2Triangle(double *TriangleSet, int pos1, int pos2){
   return;
 }
 
+void MoveTriangle(double *TriangleSet, int pos1, int pos2){
+  //Moves pos1 into pos2
+  int i,j;
+  double aux, TrianglesAux[10];
+  for(i=0;i<10;i++){
+    //Back it up
+    TrianglesAux[i]=TriangleSet[10*pos1+i];
+  }
+  for(i=pos1;i<pos2;i++){
+    for(j=0;j<10;j++){
+      TriangleSet[i*10+j]=TriangleSet[(i+1)*10+j]; // Shift left
+    }
+  }
+
+  for(i=0;i<10;i++){
+    TriangleSet[10*pos2+i]=TrianglesAux[i];// Paste backup
+  }
+  return;
+}
+
 void SwapTriangle(double *TriangleSet, int dimension){
   int i, newpos1, newpos2;
   double aux;
@@ -321,6 +341,43 @@ int TriangleSwapper(double *Triangles, double *Fit, int *TriangleCount, double *
       }
     }
   }
+  return 0;
+}    
+
+int TriangleMover(double *Triangles, double *Fit, int *TriangleCount, double ***matrix, double ***image){
+  // Tries to swap every possible pair of triangles
+      
+  int i,m,n,steps;
+  double *TrianglesChild, NewFit=0;
+  TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
+  if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
+
+  steps=-1;
+      
+  if(*TriangleCount<2){return 0;}
+      
+
+  for(m=0;m<*TriangleCount-1;m++){
+    for(n=m+1;n<*TriangleCount;n++)
+      for(i=0;i<10*MaxTriangles;i++){
+	TrianglesChild[i]=Triangles[i];
+      }
+      MoveTriangle(TrianglesChild, m,n);
+      GenerateMatrix(TrianglesChild, matrix, *TriangleCount, RES);
+      NewFit=MatrixDistance(RES, matrix, image);
+      if(VERBOSE){
+	printf("MOVING: \tTr %d & %d \tF1: %6.3lf \tF2: ",n,m,*Fit);
+	printf("%6.3lf \t#Tr: %d\n", NewFit,*TriangleCount);
+      }
+      if(NewFit<*Fit){
+	for(i=0;i<10*MaxTriangles;i++){
+	  Triangles[i]=TrianglesChild[i];
+	}
+	*Fit=NewFit;
+	return 1;
+      }
+    }
+  
   return 0;
 }    
 
@@ -646,6 +703,8 @@ int main (int argc, char *argv[]){
     if(Changed||(RANDOM-1)||(TriangleCount>=NumTriangles)){
       if(rand()%RANDOM==0)
 	TriangleSwapper(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
+      if(rand()%RANDOM==0)
+	TriangleMover(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
       if(rand()%RANDOM==0)
 	TrianglePruner(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
       if(VERBOSE){printf("Generation: %10d\n",GenCount, GenCount);}
