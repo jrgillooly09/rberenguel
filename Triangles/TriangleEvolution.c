@@ -28,7 +28,10 @@
 
 int Generations=100000;
 int MaximumSteps=10;
-int RANDOM=4;
+int RANDOM=1;
+int RandomSwapper=50;
+int RandomMover=50;
+int RandomPruner=20;
 #define BigMaximumSteps 5*MaximumSteps;
 
 
@@ -38,6 +41,7 @@ int NumTriangles = 50;
 int MaxTriangles = 100;
 double BaseColor[3]={100,100,100};
 double GlobalChanges=0, GlobalSwap=0;
+double SpeedLimit=9500;
 
 
 void RandTriangle(double *TriangleSet){
@@ -69,12 +73,15 @@ void JiggleTriangle(double *TriangleSet, double JiggleFactor){
   TriangleSet[4]=-0.5*Jiggle+TriangleSet[4]+Jiggle*rand()/((double)(RAND_MAX)+1);
   TriangleSet[5]=-0.5*Jiggle+TriangleSet[5]+Jiggle*rand()/((double)(RAND_MAX)+1);
   Jiggle=JiggleFactor*255;
-  TriangleSet[6]=-0.5*Jiggle+TriangleSet[6]+rand()/((double)(RAND_MAX)+1)*Jiggle; //c1
-  TriangleSet[7]=-0.5*Jiggle+TriangleSet[7]+rand()/((double)(RAND_MAX)+1)*Jiggle; //c2
-  TriangleSet[8]=-0.5*Jiggle+TriangleSet[8]+rand()/((double)(RAND_MAX)+1)*Jiggle; //c3
+  TriangleSet[6]=fabs(-0.5*Jiggle+TriangleSet[6]+rand()/((double)(RAND_MAX)+1)*Jiggle); //c1
+  if(TriangleSet[6]>255)TriangleSet[6]=255;
+  TriangleSet[7]=fabs(-0.5*Jiggle+TriangleSet[7]+rand()/((double)(RAND_MAX)+1)*Jiggle); //c2
+  if(TriangleSet[7]>255)TriangleSet[7]=255;
+  TriangleSet[8]=fabs(-0.5*Jiggle+TriangleSet[8]+rand()/((double)(RAND_MAX)+1)*Jiggle); //c3
+  if(TriangleSet[8]>255)TriangleSet[8]=255;
   for(j=0;j<3;j++)TriangleSet[6+j]=TriangleSet[6+j]>255?255:TriangleSet[6+j];
   aux=0.2+JiggleFactor*(rand()/((double)(RAND_MAX)+1))-0.5*JiggleFactor;
-  TriangleSet[j++]=aux>1?1:fabs(aux); //alpha
+  TriangleSet[9]=aux>1?1:fabs(aux); //alpha
 }
 
 
@@ -249,7 +256,8 @@ double MatrixDistance(int size, double ***mat1, double ***mat2)
 double GrowthFactor(int TriangleCount)
 {
   double aux;
-  aux=0.995;
+  //aux=0.995;
+  aux=1;
   //aux=TriangleCount<6?(0.75+TriangleCount/5*0.25):1;
   return aux;
 }
@@ -425,7 +433,7 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
       escaped=0;
       steps++;
       if(steps>localMaxSteps){escaped=1;break;}
-      if(*Fit<9000){JiggleTriangle(TrianglesChild+10*k,0.2**Fit/9000);}else{
+      if(*Fit<SpeedLimit){JiggleTriangle(TrianglesChild+10*k,0.1**Fit/SpeedLimit);}else{
 	if(rand()%2==0){RandTrianglePosition(TrianglesChild+10*k);}
 	else{
 	  if(rand()%3==0){RandTriangleAlpha(TrianglesChild+10*k);}else{
@@ -446,7 +454,7 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
       for(i=0;i<10*MaxTriangles;i++){
 	Triangles[i]=TrianglesChild[i];
       }
-      return *Fit<9000?6:2;
+      return *Fit<SpeedLimit?6:2;
     }
   }
   // We have tried to change all triangles unsuccessfully
@@ -472,8 +480,9 @@ void NormaliseTriangles(double *Triangles, double *Normalised, int TriangleCount
 void InflateTriangles(double *Normalised, int TriangleCount, int Factor)
 {
   int i,j=0;
-  for(i=0;i<TriangleCount;i++){
+  for(i=0;i<TriangleCount-1;i++){
     // Normalised points
+    printf("%d\n",i);
     for(j=0;j<6;j++){
       Normalised[10*i+j]=Normalised[10*i+j]*Factor;
     }
@@ -537,9 +546,12 @@ int main (int argc, char *argv[]){
 	  input=fopen(Filename,"r");
 	  if(input==NULL){puts("Failure opening file"); exit(2);}
 	  fscanf(input," %d",&TriangleCount);
+	  NormalisedTriangles=(double*)malloc(TriangleCount*sizeof(double));
+	  TriangleCount++;
 	  for(i=0;i<10*TriangleCount;i++){
 	    fscanf(input, " %lf",&NormalisedTriangles[i]);
 	  }
+	  puts("File parsed");
 	  Reverting=1;
 	  break;
 	  
@@ -568,15 +580,18 @@ int main (int argc, char *argv[]){
     }
     argc--;
   }
+  puts("Allocating memory");
+  
   dimensions[0]=RES;
   dimensions[1]=RES;
 
   Triangles=(double*)malloc(10*MaxTriangles*sizeof(double));
-  NormalisedTriangles=(double*)malloc(10*MaxTriangles*sizeof(double));
+  if(!Reverting)NormalisedTriangles=(double*)malloc(10*MaxTriangles*sizeof(double));
 
+  exit(1);
 
   srand ( time(0) );
-  image=(double***)malloc(3*sizeof(double**));
+  image=(double***)malloc(4*sizeof(double**));
   image[0]=(double**)malloc(RES*sizeof(double*));
   image[1]=(double**)malloc(RES*sizeof(double*));
   image[2]=(double**)malloc(RES*sizeof(double*));
@@ -598,7 +613,7 @@ int main (int argc, char *argv[]){
     }
   }
 
-  AuxMatrix=(double***)malloc(3*sizeof(double**));
+  AuxMatrix=(double***)malloc(4*sizeof(double**));
   AuxMatrix[0]=(double**)malloc(RES*sizeof(double*));
   AuxMatrix[1]=(double**)malloc(RES*sizeof(double*));
   AuxMatrix[2]=(double**)malloc(RES*sizeof(double*));
@@ -610,7 +625,7 @@ int main (int argc, char *argv[]){
     AuxMatrix[3][i]=(double*)calloc(RES,sizeof(double));
   }
 
-  AuxMatrix2=(double***)malloc(3*sizeof(double**));
+  AuxMatrix2=(double***)malloc(4*sizeof(double**));
   AuxMatrix2[0]=(double**)malloc(OutputRes*sizeof(double*));
   AuxMatrix2[1]=(double**)malloc(OutputRes*sizeof(double*));
   AuxMatrix2[2]=(double**)malloc(OutputRes*sizeof(double*));
@@ -621,9 +636,11 @@ int main (int argc, char *argv[]){
     AuxMatrix2[2][i]=(double*)calloc(OutputRes,sizeof(double));
     AuxMatrix2[3][i]=(double*)calloc(OutputRes,sizeof(double));
   }
-  
+
   if(Reverting){
+    puts("Intro Reverting");
     InflateTriangles(NormalisedTriangles, TriangleCount, OutputRes);
+    puts("Triangles inflated to resolution");
     GenerateMatrix(NormalisedTriangles, AuxMatrix2, TriangleCount, OutputRes);
     sprintf(Filename, "Reverted.ppm");
     output=fopen(Filename, "w");
@@ -687,7 +704,7 @@ int main (int argc, char *argv[]){
   FitStepping=init/5.;
   TriangStepping=MaxTriangles/25;
   FitThreshold=0.05*init+init-FitStepping;
-  FitLimit=0.1*init;
+  FitLimit=SpeedLimit;
   FitThresholdAdjuster=1;
   /*   sprintf(Filename, "Test0.dat", i); */
   /*   output=fopen(Filename, "w"); */
@@ -699,6 +716,7 @@ int main (int argc, char *argv[]){
   /*   output=fopen(Filename, "w"); */
   /*   GenerarImatge(dimensions, measureDif, output,NULL); */
   NumTriangles=TriangStepping;
+  //NumTriangles=MaxTriangles;
   printf("Initial number of triangles: %d, maximal number of triangles %d\n\n",NumTriangles, MaxTriangles);
   printf("Initial fit %6.3lf, Fit Step %6.3lf\n\n",init, FitStepping);
   system("sleep 2");
@@ -710,7 +728,7 @@ int main (int argc, char *argv[]){
     GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
     ActualFit=MatrixDistance(RES, AuxMatrix, image);
     if(ActualFit<FitThreshold){
-      FitThreshold=FitThreshold-FitStepping*((FitThreshold-FitLimit)>0?(FitThreshold-FitLimit):20)/(0.05*init+init-FitStepping);
+      FitThreshold=FitThreshold-FitStepping*((FitThreshold-FitLimit)>0?(FitThreshold-FitLimit):200)/(0.05*init+init-FitStepping);
       NumTriangles+=TriangStepping;
       if(NumTriangles>MaxTriangles){NumTriangles=MaxTriangles;}
       FitThresholdAdjuster++;
@@ -723,22 +741,23 @@ int main (int argc, char *argv[]){
     //Adding Triangles
     if(VERBOSE){printf("Generation: %10d\n",GenCount);}
     Changed=TriangleAdder(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image, Changed);
-    if(Changed==2){sprintf(Previous, "ADDED");}
-    if(Changed==6){sprintf(Previous, "JIGGED");}
+    if(Changed){sprintf(Previous, "%s ADDED", Previous);}
     if(VERBOSE){printf("Generation: %10d\n",GenCount);}
     
     if((rand()%RANDOM==0)||(TriangleCount>=NumTriangles)){
       Changed=TriangleChanger(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image, Changed);
-      if(Changed){sprintf(Previous, "%s CHANGED", Previous);}}
+      if(Changed==2){sprintf(Previous, "CHANGED");}
+      if(Changed==6){sprintf(Previous, "JIGGED");}
+      }
     if(VERBOSE){printf("Generation: %10d\n",GenCount);}
     if((Changed)<=2||(RANDOM-1)||(TriangleCount>=NumTriangles)){
-      if(rand()%(RANDOM*RANDOM*RANDOM)==0){
+      if(rand()%(RandomSwapper)==0){
 	Changed=TriangleSwapper(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
 	if(Changed){sprintf(Previous, "%s SWAPPED", Previous);}}
-      if(rand()%(RANDOM*RANDOM*RANDOM)==0){
+      if(rand()%(RandomMover)==0){
 	Changed=TriangleMover(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
 	if(Changed){sprintf(Previous, "%s MOVED", Previous);}}
-      if(rand()%RANDOM*RANDOM==0){
+      if(rand()%(RandomPruner)==0){
 	Changed=TrianglePruner(Triangles, &ActualFit, &TriangleCount, AuxMatrix, image);
       	if(Changed){sprintf(Previous, "%s PRUNED", Previous);}}
       if(VERBOSE){printf("Generation: %10d\n",GenCount, GenCount);}
