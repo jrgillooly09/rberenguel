@@ -482,7 +482,6 @@ void InflateTriangles(double *Normalised, int TriangleCount, int Factor)
   int i,j=0;
   for(i=0;i<TriangleCount-1;i++){
     // Normalised points
-    printf("%d\n",i);
     for(j=0;j<6;j++){
       Normalised[10*i+j]=Normalised[10*i+j]*Factor;
     }
@@ -497,9 +496,9 @@ void InflateTriangles(double *Normalised, int TriangleCount, int Factor)
 int main (int argc, char *argv[]){
   int i,j,k, Evolved=0, Changed=0, TriangleCount, GenCount, Reverting=0;
   int dimensions[2]={0, 0}, OutputRes, TriangStepping, FitThresholdAdjuster;
-  FILE *input, *output;
+  FILE *input=NULL, *output=NULL;
   char Filename[100], TempString[300];
-  double ***image, ***AuxMatrix, ***AuxMatrix2, init, PNMColor; 
+  double ***image=NULL, ***AuxMatrix=NULL, ***AuxMatrix2=NULL, init, PNMColor; 
   double *Triangles=NULL, *NormalisedTriangles=NULL;
   double ActualFit, FitStepping, FitThreshold, FitLimit;
   char *What[6]={"NOTHING","ADDED","CHANGED","SWAPPED","MOVED","PRUNED"};
@@ -515,7 +514,7 @@ int main (int argc, char *argv[]){
   argc--;
   while(argc>=0){
     //printf("argc %d\n",argc);
-    for(i=0;i<9+1;i++){
+    for(i=0;i<8+1;i++){
       //printf("%d %d\n",argc,i);
       if(strstr(argv[argc],Arg[i])!=NULL){
 	//printf("Eureka\n");
@@ -546,12 +545,13 @@ int main (int argc, char *argv[]){
 	  input=fopen(Filename,"r");
 	  if(input==NULL){puts("Failure opening file"); exit(2);}
 	  fscanf(input," %d",&TriangleCount);
-	  NormalisedTriangles=(double*)malloc(TriangleCount*sizeof(double));
-	  TriangleCount++;
+	  //TriangleCount++;
+	  NormalisedTriangles=(double*)malloc(10*TriangleCount*sizeof(double));
 	  for(i=0;i<10*TriangleCount;i++){
 	    fscanf(input, " %lf",&NormalisedTriangles[i]);
 	  }
 	  puts("File parsed");
+	  printf("Final i: %d\n",i);
 	  Reverting=1;
 	  break;
 	  
@@ -588,42 +588,62 @@ int main (int argc, char *argv[]){
   Triangles=(double*)malloc(10*MaxTriangles*sizeof(double));
   if(!Reverting)NormalisedTriangles=(double*)malloc(10*MaxTriangles*sizeof(double));
 
-  exit(1);
-
   srand ( time(0) );
+
   image=(double***)malloc(4*sizeof(double**));
+  if(image==NULL){puts("Memory error");exit(255);}
   image[0]=(double**)malloc(RES*sizeof(double*));
+  if(image[0]==NULL){puts("Memory error");exit(255);}
   image[1]=(double**)malloc(RES*sizeof(double*));
+  if(image[1]==NULL){puts("Memory error");exit(255);}
   image[2]=(double**)malloc(RES*sizeof(double*));
+  if(image[2]==NULL){puts("Memory error");exit(255);}
   image[3]=(double**)malloc(RES*sizeof(double*));
+  if(image[3]==NULL){puts("Memory error");exit(255);}
   for(i=0;i<RES;i++){
     image[0][i]=(double*)calloc(RES,sizeof(double));
+    if(image[0][i]==NULL){puts("Memory error");exit(255);}
     image[1][i]=(double*)calloc(RES,sizeof(double));
+    if(image[1][i]==NULL){puts("Memory error");exit(255);}
     image[2][i]=(double*)calloc(RES,sizeof(double));
+    if(image[2][i]==NULL){puts("Memory error");exit(255);}
     image[3][i]=(double*)calloc(RES,sizeof(double));
+    if(image[3][i]==NULL){puts("Memory error");exit(255);}
   }
 
   //Header(dimensions,imageF,NULL);
 
-  for(i=0;i<RES;i++){
-    for(j=0;j<RES;j++){
-      image[0][i][j]=BaseColor[0];
-      image[1][i][j]=BaseColor[1];
-      image[2][i][j]=BaseColor[2];
-    }
-  }
+  /* for(i=0;i<RES;i++){ */
+/*     for(j=0;j<RES;j++){ */
+/*       image[0][i][j]=BaseColor[0]; */
+/*       image[1][i][j]=BaseColor[1]; */
+/*       image[2][i][j]=BaseColor[2]; */
+/*     } */
+/*   } */
+
 
   AuxMatrix=(double***)malloc(4*sizeof(double**));
+  if(AuxMatrix==NULL){puts("Memory error");exit(255);}
   AuxMatrix[0]=(double**)malloc(RES*sizeof(double*));
+  if(AuxMatrix[0]==NULL){puts("Memory error");exit(255);}
   AuxMatrix[1]=(double**)malloc(RES*sizeof(double*));
+  if(AuxMatrix[1]==NULL){puts("Memory error");exit(255);}
   AuxMatrix[2]=(double**)malloc(RES*sizeof(double*));
+  if(AuxMatrix[2]==NULL){puts("Memory error");exit(255);}
   AuxMatrix[3]=(double**)malloc(RES*sizeof(double*));
+  if(AuxMatrix[3]==NULL){puts("Memory error");exit(255);}
   for(i=0;i<RES;i++){
     AuxMatrix[0][i]=(double*)calloc(RES,sizeof(double));
+    if(AuxMatrix[0][i]==NULL){puts("Memory error");exit(255);}
     AuxMatrix[1][i]=(double*)calloc(RES,sizeof(double));
+    if(AuxMatrix[1][i]==NULL){puts("Memory error");exit(255);}
     AuxMatrix[2][i]=(double*)calloc(RES,sizeof(double));
+    if(AuxMatrix[2][i]==NULL){puts("Memory error");exit(255);}
     AuxMatrix[3][i]=(double*)calloc(RES,sizeof(double));
+    if(AuxMatrix[3][i]==NULL){puts("Memory error");exit(255);}
   }
+
+
 
   AuxMatrix2=(double***)malloc(4*sizeof(double**));
   AuxMatrix2[0]=(double**)malloc(OutputRes*sizeof(double*));
@@ -650,7 +670,6 @@ int main (int argc, char *argv[]){
     fclose(output);
     return 0;
   }
-
   sprintf(TempString,"convert -format pnm -compress none -resize %dx%d %s input.pnm", RES, RES, Filename);
   i=system(TempString);
   printf("System call: %s\n",TempString);
