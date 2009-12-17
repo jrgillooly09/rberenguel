@@ -16,7 +16,7 @@
 // along with this program. If not, see
 // <http://www.gnu.org/licenses/>.
 
-// 20091213@23:50
+// 20091208@16:50
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,9 +39,9 @@ int VERBOSE=0, DEBUG=0;
 int RES = 150;
 int NumTriangles = 50;
 int MaxTriangles = 100;
-double BaseColor[3]={100,100,100};
+double BaseColor[3]={0,0,0};
 double GlobalChanges=0, GlobalSwap=0;
-double SpeedLimit=9500;
+double SpeedLimit=9000;
 
 void MedianColor(int size, double ***matrix)
 {
@@ -63,15 +63,15 @@ void MedianColor(int size, double ***matrix)
   return;
 }
 
-void RandTriangle(double *TriangleSet){
+void RandTriangle(double *TriangleSet, int Size){
   int j=0;
   double aux;
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x1
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y1
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x2
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y2
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*RES; // x3
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*RES; // y3
+  TriangleSet[j++]=TriangleSet[0]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // x1
+  TriangleSet[j++]=TriangleSet[1]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // y1
+  TriangleSet[j++]=TriangleSet[0]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // x2
+  TriangleSet[j++]=TriangleSet[1]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // y2
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c1
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c2
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c3
@@ -190,7 +190,7 @@ void SwapTriangle(double *TriangleSet, int dimension){
 void RemoveTriangle(double *TriangleSet, int dimension){
   int i,j;
   if(dimension<1){return;}
-  for(i=0;i<dimension-1;i++){
+  for(i=0;i<dimension-2;i++){
     for(j=0;j<10;j++){	
       TriangleSet[i*10+j]=TriangleSet[(i+1)*10+j];
     }
@@ -276,7 +276,7 @@ double GrowthFactor(int TriangleCount)
 {
   double aux;
   //aux=0.995;
-  aux=1;
+  aux=0.999;
   //aux=TriangleCount<6?(0.75+TriangleCount/5*0.25):1;
   return aux;
 }
@@ -292,7 +292,7 @@ int TriangleAdder(double *Triangles, double *Fit, int *TriangleCount, double ***
   // triangle is generated, return 1
       
   int i,steps, LocalTriangleCount;
-  double *TrianglesChild, NewFit=0;
+  double *TrianglesChild, NewFit=0, Size;
   TrianglesChild=(double*)malloc(MaxTriangles*10*sizeof(double));
   if(TrianglesChild==NULL){puts("Error allocating memory");exit(3);}
   steps=-1;
@@ -304,7 +304,8 @@ int TriangleAdder(double *Triangles, double *Fit, int *TriangleCount, double ***
     do{
       steps++;
       if(steps>MaximumSteps){return 0;}
-      RandTriangle(TrianglesChild+10*(LocalTriangleCount-1));
+      Size= RES-(*TriangleCount/(1.*MaxTriangles))*(RES-0.6*RES);
+      RandTriangle(TrianglesChild+10*(LocalTriangleCount-1),Size);
       GenerateMatrix(TrianglesChild,matrix, LocalTriangleCount, RES);
       NewFit=MatrixDistance(RES, matrix, image);
       if(VERBOSE){
@@ -452,12 +453,18 @@ int TriangleChanger(double *Triangles, double *Fit, int *TriangleCount, double *
       escaped=0;
       steps++;
       if(steps>localMaxSteps){escaped=1;break;}
-      if((*Fit<SpeedLimit)||(*TriangleCount>=NumTriangles-1)){Jiggle=1;JiggleTriangle(TrianglesChild+10*k,0.1**Fit/SpeedLimit);}else{Jiggle=0;
+      if((*Fit<SpeedLimit)||(*TriangleCount>=NumTriangles-1)){
+        if(rand()%3==0){
+          Jiggle=0;RandTriangle(TrianglesChild+10*k, 0.7*RES);
+              }else{
+        Jiggle=1;JiggleTriangle(TrianglesChild+10*k,0.1**Fit/SpeedLimit);}}
+      else{Jiggle=0;
 	if(rand()%2==0){RandTrianglePosition(TrianglesChild+10*k);}
 	else{
-	  if(rand()%2==0){Jiggle=1;JiggleTriangle(TrianglesChild+10*k,0.1**Fit/SpeedLimit);}else{
-	  if(rand()%3==0){RandTriangleAlpha(TrianglesChild+10*k);}else{
-	    if(rand()%3==0){RandTriangle(TrianglesChild+10*k);}else{
+	  if(rand()%7==0){Jiggle=1;JiggleTriangle(TrianglesChild+10*k,0.1**Fit/SpeedLimit);}else{
+	  if(rand()%2==0){RandTriangleAlpha(TrianglesChild+10*k);}else{
+	    if(rand()%2==0){RandTriangle(TrianglesChild+10*k, 0.7*RES);
+        }else{
 	      RandTriangleColors(TrianglesChild+10*k);}}}}}
       GenerateMatrix(TrianglesChild, matrix, *TriangleCount, RES);
       NewFit=MatrixDistance(RES, matrix, image);
@@ -707,7 +714,7 @@ int main (int argc, char *argv[]){
   BaseColor[1]=0;
   BaseColor[2]=0;
  
-  MedianColor(RES, image);
+//  MedianColor(RES, image);
   
 
   for(i=0;i<RES;i++){
@@ -726,7 +733,7 @@ int main (int argc, char *argv[]){
   GenerateMatrix(Triangles, AuxMatrix, TriangleCount, RES);
   init=MatrixDistance(RES, AuxMatrix, image);
   FitStepping=init/5.;
-  TriangStepping=MaxTriangles/25;
+  TriangStepping=MaxTriangles/15;
   FitThreshold=0.05*init+init-FitStepping;
   FitLimit=SpeedLimit;
   FitThresholdAdjuster=1;
