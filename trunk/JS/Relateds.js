@@ -68,6 +68,7 @@ Mac[1][j++]="How to get a local proxy";
 // Mac[0][j]="";
 // Mac[1][j++]="";
 
+// $PROGRAMMING
 
 Programming=new Array();
 Programming[0]=new Array();
@@ -98,6 +99,8 @@ Programming[1][j++]="More songs in code";
 // Programming[0][j]="";
 // Programming[1][j++]="";
 
+// $IPOD
+
 iPod=new Array();
 iPod[0]=new Array();
 iPod[1]=new Array();
@@ -122,6 +125,86 @@ iPod[1][j++]="Retro on iPod Touch (2): ScummVM";
 // iPod[1][j++]="";
 // iPod[0][j]="";
 // iPod[1][j++]="";
+
+// $GAMES
+
+Games=new Array();
+Games[0]=new Array();
+Games[1]=new Array();
+j=0;
+Games[0][j]="http://berenguel.blogspot.com/2009/09/torus-trooper.html";
+Games[1][j++]="Torus trooper";
+Games[0][j]="http://berenguel.blogspot.com/2009/05/nethack.html";
+Games[1][j++]="Nethack";
+Games[0][j]="http://berenguel.blogspot.com/2009/07/hyperoid-aka-sdlroids.html";
+Games[1][j++]="Hyperoid (a.k.a. SDLRoids)";
+Games[0][j]="http://berenguel.blogspot.com/2009/11/vector-tanks-ipod-iphone-game.html";
+Games[1][j++]="Vector Tanks: iPod Touch / iPhone game";
+Games[0][j]="http://berenguel.blogspot.com/2009/12/retro-on-ipod-touch-2-scummvm.html";
+Games[1][j++]="Retro on iPod Touch (2): ScummVM";
+// Games[0][j]="";
+// Games[1][j++]="";
+// Games[0][j]="";
+// Games[1][j++]="";
+// Games[0][j]="";
+// Games[1][j++]="";
+// Games[0][j]="";
+// Games[1][j++]="";
+
+// $LISP
+
+Lisp=new Array();
+Lisp[0]=new Array();
+Lisp[1]=new Array();
+j=0;
+Lisp[0][j]="http://berenguel.blogspot.com/2009/11/external-rays-lavaurs-algorithm.html";
+Lisp[1][j++]="External rays & Lavaurs algorithm";
+Lisp[0][j]="http://berenguel.blogspot.com/2009/08/lavaurs-algorithm.html";
+Lisp[1][j++]="Lavaurs algorithm";
+Lisp[0][j]="http://berenguel.blogspot.com/2009/06/lisp-raytracing-again.html";
+Lisp[1][j++]="Lisp raytracing, again";
+Lisp[0][j]="http://berenguel.blogspot.com/2009/12/abstract-triangles-in-lisp.html";
+Lisp[1][j++]="Abstract triangles in Lisp";
+Lisp[0][j]="http://berenguel.blogspot.com/2009/08/teleworking-in-august.html";
+Lisp[1][j++]="Teleworking in August";
+// Lisp[0][j]="";
+// Lisp[1][j++]="";
+// Lisp[0][j]="";
+// Lisp[1][j++]="";
+// Lisp[0][j]="";
+// Lisp[1][j++]="";
+
+// $EMACS
+
+emacs=new Array();
+emacs[0]=new Array();
+emacs[1]=new Array();
+j=0;
+emacs[0][j]="http://berenguel.blogspot.com/2007/07/loving-emacsorg-mode-auctex.html";
+emacs[1][j++]="Loving emacs+org mode (&amp; auctex...)<it>(in catalan)</it>";
+emacs[0][j]="http://berenguel.blogspot.com/2009/11/mg-zile-quick-emacs-in-command-line.html";
+emacs[1][j++]="mg &amp; Zile: quick emacs in the command line";
+// emacs[0][j]="";
+// emacs[1][j++]="";
+
+// $LATEX
+
+Latex=new Array();
+Latex[0]=new Array();
+Latex[1]=new Array();
+j=0;
+Latex[0][j]="http://berenguel.blogspot.com/2009/09/scribuslatex-in-mac-os.html";
+Latex[1][j++]="Scribus+Latex in Mac OS";
+Latex[0][j]="http://berenguel.blogspot.com/2009/09/auctex-again.html";
+Latex[1][j++]="AucTeX again";
+Latex[0][j]="http://berenguel.blogspot.com/2008/09/latex-booklets.html";
+Latex[1][j++]="How to create LaTeX booklets";
+Latex[0][j]="";
+Latex[1][j++]="";
+Latex[0][j]="";
+Latex[1][j++]="";
+Latex[0][j]="";
+Latex[1][j++]="";
 
 // Mac=new Array();
 // Mac[0]=new Array();
