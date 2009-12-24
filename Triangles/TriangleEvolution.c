@@ -43,7 +43,7 @@ double BaseColor[3]={0,0,0};
 double GlobalChanges=0, GlobalSwap=0;
 double SpeedLimit=4000;
 
-void MedianColor(int size, double ***matrix)
+void AverageColor(int size, double ***matrix)
 {
   int i, j;
   BaseColor[0]=0;
@@ -66,12 +66,21 @@ void MedianColor(int size, double ***matrix)
 void RandTriangle(double *TriangleSet, int Size){
   int j=0;
   double aux;
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x3
-  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y3
-  TriangleSet[j++]=TriangleSet[0]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // x1
-  TriangleSet[j++]=TriangleSet[1]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // y1
-  TriangleSet[j++]=TriangleSet[0]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // x2
-  TriangleSet[j++]=TriangleSet[1]-0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size; // y2
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // x1
+  TriangleSet[j++]=-0.25*RES+rand()/((double)(RAND_MAX)+1)*1.5*RES; // y1
+  aux=0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size;
+  aux=aux>1?aux:1;
+  TriangleSet[j++]=TriangleSet[0]-aux; //x2
+  aux=0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size;
+  aux=aux>1?aux:1;
+  TriangleSet[j++]=TriangleSet[1]-aux; //y2
+  aux=0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size;
+  aux=aux>1?aux:1;
+  TriangleSet[j++]=TriangleSet[0]-aux; //x3
+  aux=0.25*Size+rand()/((double)(RAND_MAX)+1)*0.5*Size;
+  aux=aux>1?aux:1;
+  TriangleSet[j++]=TriangleSet[1]-aux; //y3
+
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c1
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c2
   TriangleSet[j++]=rand()/((double)(RAND_MAX)+1)*255.; //c3
@@ -102,8 +111,6 @@ void JiggleTriangle(double *TriangleSet, double JiggleFactor){
   aux=0.2+JiggleFactor*(rand()/((double)(RAND_MAX)+1))-0.5*JiggleFactor;
   TriangleSet[9]=aux>1?1:fabs(aux); //alpha
 }
-
-
 
 void RandTrianglePosition(double *TriangleSet){
   int j=0;
@@ -724,7 +731,7 @@ int main (int argc, char *argv[]){
   BaseColor[1]=0;
   BaseColor[2]=0;
  
-  MedianColor(RES, image);
+  AverageColor(RES, image);
 
   for(i=0;i<RES;i++){
     for(j=0;j<RES;j++){
