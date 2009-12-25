@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright 2009 Rubén Berenguel
+# Copyright 2009 Ruben Berenguel
 
 # ruben /at/ maia /dot/ ub /dot/ es
 
