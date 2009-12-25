@@ -22,6 +22,7 @@
 # all permissions, Then will unmount #and use scp to copy FILENAME to
 # your iPod/iPhone. You can download the latest version (and read the
 # GPL #license) from
+# http://rberenguel.googlecode.com/svn/trunk/Bash/ToIpod.sh
 
 FILENAME=TeXFiles.dsk
 DSKSOURCE=~/Documents/
