@@ -92,8 +92,8 @@ Programming[0][j]="http://berenguel.blogspot.com/2009/10/songs-in-code.html";
 Programming[1][j++]="Songs in code (twitter trend)";
 Programming[0][j]="http://berenguel.blogspot.com/2009/11/more-songsincode.html";
 Programming[1][j++]="More songs in code";
-// Programming[0][j]="";
-// Programming[1][j++]="";
+Programming[0][j]="http://berenguel.blogspot.com/2009/12/evolutionary-approximation-of-christmas.html";
+Programming[1][j++]="Evolutionary approximation of a Christmas postcard";
 // Programming[0][j]="";
 // Programming[1][j++]="";
 // Programming[0][j]="";
@@ -246,34 +246,38 @@ function Relateds()
 	}
     }
     return LinkList;
-    //ScrambleList(MergedList);
-    
 }
+    
+    function randOrd()
+    {
+	return (Math.round(Math.random())-0.5);}
+	
+	function ScrambleList(SourceList){
+	    // This function returns a scrambled list based on Sourcelist.
+	    NumberList = new Array();
+	    for(i=0;i<SourceList[0].length;i++){ // 
+		NumberList[i]=i;
+	    }
+	    NumberList.sort(randOrd);
+	    CopyList = new Array();
+	    CopyList[0] = new Array();
+	    CopyList[1] = new Array();
+	    for(i=0;i<SourceList[0].length;i++){
+		CopyList[0][i]=SourceList[0][NumberList[i]];
+		CopyList[1][i]=SourceList[1][NumberList[i]];
+	    } 
+	    return CopyList;
+	}
 
-function randOrd(){
-    return (Math.round(Math.random())-0.5);}
-function ScrambleList(SourceList){
-    NumberList = new Array();
-    for(i=0;i<SourceList[0].length;i++){ // 
-	NumberList[i]=i;
-    }
-    NumberList.sort(randOrd);
-    CopyList = new Array();
-    CopyList[0] = new Array();
-    CopyList[1] = new Array();
-    for(i=0;i<SourceList[0].length;i++){
-	CopyList[0][i]=SourceList[0][NumberList[i]];
-	CopyList[1][i]=SourceList[1][NumberList[i]];
-    }
-    
-    return CopyList;
-    
-}
-
-function ParseList(Identifier){
-    document.write('<ul>');
-    for(i=0;i<Identifier[0].length;i++){
-	document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
-    }
-    document.write('</ul>');
-}
+	function ParseList(Identifier, MaxLength)
+	{
+	    //MaxLength is an optional argument
+	    //Hardcoded list length at most 15 element
+	    if(!MaxLength){MaxLength=15;}
+	    document.write('<ul>');
+	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
+	    for(i=0;i<NumberOfItemsToShow;i++){
+		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
+	    }
+	    document.write('</ul>');
+	}
