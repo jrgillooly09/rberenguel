@@ -20,7 +20,9 @@
 # PageDiffs: Fill in an array of webpages, with the option "write"
 # will download them, with the "diff" option will re-download them and
 # check the new against the old for differences. With the "diff mail"
-# option, will send an email to $MAILRECIPIENT, assuming mail works
+# option, will send an email to $MAILRECIPIENT, assuming mail works.
+# You can find the most up to date version of this file here
+# http://rberenguel.googlecode.com/svn/trunk/Bash/PageDiffs.sh
 
 # 20091226@00:24
 
