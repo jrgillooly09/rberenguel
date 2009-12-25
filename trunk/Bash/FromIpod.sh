@@ -1,0 +1,11 @@
+#!/bin/sh
+FILENAME=TeXFiles.dsk
+DSKDESTINATIONDIRECTORY=~/Documents/
+MOUNTPOINT=/mnt/hfs-disk/
+DATADESTINATIONDIRECTORY=~/Documents/iPod-Data
+
+scp mobile@$1:/var/mobile/Library/MacOSClassic/$FILENAME $DSKDESTINATIONDIRECTORY
+sudo mount -oloop -t hfs $DSKDESTINATIONDIRECTORY$FILENAME $MOUNTPOINT
+sudo cp $MOUNTPOINT*.*  $DATADESTINATIONDIRECTORY
+sudo chmod u+rxw  $DATADESTINATIONDIRECTORY/*.* -v 
+sudo umount $MOUNTPOINT
