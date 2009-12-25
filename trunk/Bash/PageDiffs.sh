@@ -22,7 +22,9 @@
 # check the new against the old for differences. With the "diff mail"
 # option, will send an email to $MAILRECIPIENT, assuming mail works
 
-MAILRECIPIENT="rberenguel@gmail.com"
+# 20091226@00:24
+
+MAILRECIPIENT="mail@mail.com"
 
 j=0
 Pages[j++]="http://www.maia.ub.es/~ruben/"
