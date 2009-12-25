@@ -34,6 +34,8 @@ Cooking[0][j]="http://berenguel.blogspot.com/2008/09/my-grandpas-doughnuts.html"
 Cooking[1][j++]="My grandpa's doughnuts";
 Cooking[0][j]="http://berenguel.blogspot.com/2008/10/microwave-potato-chips-recipe.html";
 Cooking[1][j++]="Microwave potato chips";
+Cooking[0][j]="http://berenguel.blogspot.com/2009/11/matjessalat-recipe.html";
+Cooking[1][j++]="Matjessalat recipe";
 //Cooking[0][j]="";
 //Cooking[1][j++]="";
 
@@ -224,6 +226,24 @@ Latex[1][j++]="How to create LaTeX booklets";
 // Latex[1][j++]="";
 // Latex[0][j]="";
 // Latex[1][j++]="";
+
+// $MATHS
+
+Maths=new Array();
+Maths[0]=new Array();
+Maths[1]=new Array();
+j=0;
+Maths[0][j]="http://berenguel.blogspot.com/2009/11/external-rays-lavaurs-algorithm.html";
+Maths[1][j++]="External rays and Lavaurs algorithm";
+Maths[0][j]="http://berenguel.blogspot.com/2009/11/scribus-for-mathematical-posters.html";
+Maths[1][j++]="Scribus for mathematical posters";
+Maths[0][j]="http://berenguel.blogspot.com/2009/11/future-in-mathematics.html";
+Maths[1][j++]="Future in Mathematics";
+Maths[0][j]="http://berenguel.blogspot.com/2009/10/why-i-bought-ipod-touch.html";
+Maths[1][j++]="Why I bought an iPod touch (as mathematician)";
+//Maths[0][j]="";
+//Maths[1][j++]="";
+
 
 // Mac=new Array();
 // Mac[0]=new Array();
