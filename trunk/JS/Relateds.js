@@ -36,6 +36,8 @@ Cooking[0][j]="http://berenguel.blogspot.com/2008/10/microwave-potato-chips-reci
 Cooking[1][j++]="Microwave potato chips";
 Cooking[0][j]="http://berenguel.blogspot.com/2009/11/matjessalat-recipe.html";
 Cooking[1][j++]="Matjessalat recipe";
+Cooking[0][j]="http://berenguel.blogspot.com/2009/12/gluten-free-dark-brown-cane-sugar.html";
+Cooking[1][j++]="Gluten,dairy,egg-free dark brown cane sugar biscuit";
 //Cooking[0][j]="";
 //Cooking[1][j++]="";
 
@@ -115,6 +117,8 @@ Programming[0][j]="http://berenguel.blogspot.com/2009/11/more-songsincode.html";
 Programming[1][j++]="More songs in code";
 Programming[0][j]="http://berenguel.blogspot.com/2009/12/evolutionary-approximation-of-christmas.html";
 Programming[1][j++]="Evolutionary approximation of a Christmas postcard";
+Programming[0][j]="http://berenguel.blogspot.com/2010/01/syncing-ipods-vmac-and-linux-emacs-on.html";
+Programming[1][j++]="Syncing iPod's vMac and Linux: emacs on iPod Touch";
 // Programming[0][j]="";
 // Programming[1][j++]="";
 // Programming[0][j]="";
@@ -138,6 +142,8 @@ iPod[0][j]="http://berenguel.blogspot.com/2009/12/sbsettings-for-jailbroken-ipho
 iPod[1][j++]="SBSettings for jailbroken iPhone/iPod Touch";
 iPod[0][j]="http://berenguel.blogspot.com/2009/12/retro-on-ipod-touch-2-scummvm.html";
 iPod[1][j++]="Retro on iPod Touch (2): ScummVM";
+iPod[0][j]="http://berenguel.blogspot.com/2010/01/syncing-ipods-vmac-and-linux-emacs-on.html";
+iPod[1][j++]="Syncing iPod's vMac and Linux: emacs on iPod Touch";
 // iPod[0][j]="";
 // iPod[1][j++]="";
 // iPod[0][j]="";
@@ -205,8 +211,12 @@ emacs[0][j]="http://berenguel.blogspot.com/2007/07/loving-emacsorg-mode-auctex.h
 emacs[1][j++]="Loving emacs+org mode (&amp; auctex...)<it>(in catalan)</it>";
 emacs[0][j]="http://berenguel.blogspot.com/2009/11/mg-zile-quick-emacs-in-command-line.html";
 emacs[1][j++]="mg &amp; Zile: quick emacs in the command line";
+emacs[0][j]="http://berenguel.blogspot.com/2010/01/syncing-ipods-vmac-and-linux-emacs-on.html";
+emacs[1][j++]="Syncing iPod's vMac and Linux: emacs on iPod Touch";
 // emacs[0][j]="";
 // emacs[1][j++]="";
+
+
 
 // $LATEX
 
