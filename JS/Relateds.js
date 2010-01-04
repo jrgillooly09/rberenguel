@@ -57,6 +57,8 @@ Linux[0][j]="http://berenguel.blogspot.com/2009/07/acer-aspire-one-89-ubuntu-flu
 Linux[1][j++]="Acer Aspire One 8.9' + Ubuntu + Fluxbox";
 Linux[0][j]="http://berenguel.blogspot.com/2009/11/mg-zile-quick-emacs-in-command-line.html";
 Linux[1][j++]="mg & Zile: quick emacs in the command line";
+Linux[0][j]="http://berenguel.blogspot.com/2010/01/cron-diff-wget-watch-changes-in-webpage.html";
+Linux[1][j++]="Cron, diff & wget: Watch changes in a webpage";
 
 // $MAC
 
@@ -119,8 +121,8 @@ Programming[0][j]="http://berenguel.blogspot.com/2009/12/evolutionary-approximat
 Programming[1][j++]="Evolutionary approximation of a Christmas postcard";
 Programming[0][j]="http://berenguel.blogspot.com/2010/01/syncing-ipods-vmac-and-linux-emacs-on.html";
 Programming[1][j++]="Syncing iPod's vMac and Linux: emacs on iPod Touch";
-// Programming[0][j]="";
-// Programming[1][j++]="";
+Programming[0][j]="http://berenguel.blogspot.com/2010/01/cron-diff-wget-watch-changes-in-webpage.html";
+Programming[1][j++]="Cron, diff & wget: Watch changes in a webpage";
 // Programming[0][j]="";
 // Programming[1][j++]="";
 
