@@ -6,6 +6,7 @@
 (setq E (* Eye (/ 72 2.54)))
 ; Eye separation in pixels (with a factor conversion of 72 Dpi, if
 ; your screen/print has another resolution, change this parameter
+(setq HSR T)
 
 
 (defun Separation (3dMat i j)
@@ -28,7 +29,7 @@
 (defun DistanceFormula (element)
 ; Given a matrix element, between 0 and 1, returns the separation
 
-  (/ (* (- 1.0 (* DoF element)) E) (- 2.0 (* DoF element))))
+  (round (/ (* (- 1.0 (* DoF element)) E) (- 2.0 (* DoF element)))))
 
 (defun Shifting (Same left right k)
 ; This function will change the "same vector" to fit the depth image
@@ -39,6 +40,25 @@
 	  (Shifting Same right k (aref Same right))))
   (values left right))
 
+(defun Z (3dMat x y)
+  (/ (/ (+ 
+	 (svref (aref 3dMat x y) 0) 
+	 (svref (aref 3dMat x y) 1) 
+	 (svref (aref 3dMat x y) 2)) 
+	3.0)
+     255.0))
+
+(defun visible-p (3dMat x y tee)
+  (let* (
+	 (element (Z 3dMat x y))
+	 (elementpt (Z 3dMat (+ x tee) y))
+	 (elementmt (Z 3dMat (- x tee) y))
+	 (zt (+ element (* 2.0 (/ (* (- 2.0 (* DoF element) tee)) (* DoF E)))))
+	 (visible (and (< elementmt zt) (< elementpt zt)))
+	 )
+    (if (and (< zt 1) visible)
+	(visible-p 3dMat x y (+ 1 tee))
+	visible)))
 
 (defun Stereo (3dMat res texture)
 ; Given the grayscale image in 3dMat, this function generates the
@@ -52,56 +72,59 @@
     ; Same is a vector which will contain the points which should have
     ; the same colour. SIRDS will contain the final image
 
-    (dotimes (j (* res 100)) 
-      (dotimes (i (* res 100))
-	(setf (aref Same i) i))
+    (dotimes (y (* res 100)) 
+      (dotimes (x (* res 100))
+	(setf (aref Same x) x))
       ; We start by setting it at the identity
 
-      (dotimes (i (* res 100))
-	(let* ((separation (Separation 3dMat i j))
-	       (left  (round (- i (/ separation 2.0))))
-	       (right (round (+ i (/ separation 2.0)))))
+      (dotimes (x (* res 100))
+	(let* ((separation (Separation 3dMat x y))
+	       (left  (round (- x (/ separation 2.0))))
+	       (right (round (+ left separation))))
 	  ; Calculate the separation of the corresponding depth point,
 	  ; as a left eye-right eye pixels.
 	  
 	  (if (and (>= left 0) (< right (* res 100)))
-	      ; If the left-right pixels are in the image, change the
-	      ; same vector to adequately map to the random dot
-	      ; stereogram
-	      (multiple-value-bind (left right) 
-		  (Shifting Same left right (aref Same left))
-		(setf (aref Same left) right)))))
+	      ; If the left-right pixels are in the image, check for
+	      ; hidden surfaces. Then change the same vector to
+	      ; adequately map to the random dot stereogram
+	      (if (or (visible-p 3dMat x y 1) HSR)
+		  (multiple-value-bind (left right) 
+		      (Shifting Same left right (aref Same left))
+		    (setf (aref Same left) right))
+		  nil
+		  ))))
 
      (if (not texture) 
 	 ; If we don't have a texture field, use a random dot generator
 	 (let ((Colors (make-array (* res 100)))
-	       (i 0)
+	       (x 0)
 	       )
 	   (dotimes (sss (* res 100))
-	     (setq i (- (- (* res 100) 1) sss))
-	     (if (eq (aref Same i) i)
+	     (setq x (- (- (* res 100) 1) sss))
+	     (if (eq (aref Same x) x)
 		 (progn
-		   (setf (aref Colors i) (vector 
+		   (setf (aref Colors x) (vector 
 					  (random 255.0)
 					  (random 255.0)
 					  (random 255.0))))
 		 (progn
-		   (setf (aref Colors i) (aref Colors (aref Same i)))
+		   (setf (aref Colors x) (aref Colors (aref Same x)))
 		   ))
-	     (setf (aref SIRDS i j)  (aref Colors i))))
+	     (setf (aref SIRDS x y)  (aref Colors x))))
 
 	 ; If we are using the texture, colours should be taken from the texture
 	 (let ((Colors (make-array (* res 100))) 
-	       (i 0))
+	       (x 0))
 	   (dotimes (sss (* res 100))
-	     (setq i (- (- (* res 100) 1) sss))
-	     (if (eq (aref Same i) i)
-		 (setf (aref Colors i)  
+	     (setq x (- (- (* res 100) 1) sss))
+	     (if (eq (aref Same x) x)
+		 (setf (aref Colors x)  
 		        (aref (car texture) 
-				     (mod i (second texture)) 
-				     (mod j (third texture))))
-		 (setf (aref Colors i) (aref Colors (aref Same i))))
-	     (setf (aref SIRDS i j)  (aref Colors i))
+				     (mod x (second texture)) 
+				     (mod y (third texture))))
+		 (setf (aref Colors x) (aref Colors (aref Same x))))
+	     (setf (aref SIRDS x y)  (aref Colors x))
 	     ))))
     
     (marking SIRDS res)
@@ -119,7 +142,8 @@
 
 (defun Main (res)
   (tracer (Stereo (GetImage (* 100 res) (* 100 res) "Entrada.ppm") res 
-		  (list (GetImage 120 99 "texture.ppm") 120 99)) 
+		  nil
+		  ) 
 	  (make-pathname :name "SIRDS.ppm") res))
 ;
 
