@@ -287,8 +287,8 @@ Plants[0][j]="http://berenguel.blogspot.com/2008/08/strawberry-seed-germination.
 Plants[1][j++]="Strawberry seed germination";
 Plants[0][j]="http://berenguel.blogspot.com/2008/07/apple-seed-germination.html";
 Plants[1][j++]="Apple seed germination";
-//Plants[0][j]="";
-//Plants[1][j++]="";
+Plants[0][j]="http://berenguel.blogspot.com/2010/01/lemon-seedlings-around-7-months.html";
+Plants[1][j++]="Lemon seedlings after 7 months";
 //Plants[0][j]="";
 //Plants[1][j++]="";
 
