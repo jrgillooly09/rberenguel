@@ -103,7 +103,7 @@ function initImatge(imatgeId) {
     
 document.write('<div>')
 for(i=0;i<MatriuNumImatges.length;i++){
-    document.write('<a href="'+ImatgesAtzar[1][MatriuNumImatges[i]]+'">');
+    document.write('<a href="'+ImatgesAtzar[1][MatriuNumImatges[i]]+'" onClick="pageTracker._trackEvent(\'CafePress\',\Ad'+i+'Click\');">');
     document.write('<img style="padding: 0 0 0 0; border-width: 2 px; border-style: solid; border-color:  #D0D0D0; width: 220px; "');
     document.write('src="'+ImatgesAtzar[0][MatriuNumImatges[i]]+'" id="idImatge'+i+'" alt="idImatge'+i+'"/></a>');
 }
