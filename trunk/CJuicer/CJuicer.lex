@@ -147,7 +147,7 @@ D    [0-9]
 
 int main(void)
 {
-  auxiliar=fopen("proves.dat","w");
+  auxiliar=fopen("test.dat","w");
   yylex();
   return 0;
 
