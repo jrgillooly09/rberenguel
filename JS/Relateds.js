@@ -18,6 +18,19 @@
 // You can find the latest version of this file at
 // http://rberenguel.googlecode.com/svn/trunk/JS/Relateds.js
 
+
+Featured=new Array();
+Featured[0]=new Array(2);
+Featured[1]=new Array(2);
+j=0;
+Featured[0][j]="http://berenguel.blogspot.com/2010/03/procrastination-causes-and-cures.html";
+Featured[1][j++]="Procrastination: Causes and cures";
+Featured[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
+Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
+
+Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
+Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][1];
+
 Cooking=new Array();
 Cooking[0]=new Array();
 Cooking[1]=new Array();
@@ -46,7 +59,7 @@ Linux[0]=new Array();
 Linux[1]=new Array();
 j=0;
 Linux[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
-Linux[1][j++]="Whistle control your computer (Linux&amp;Mac)";
+Linux[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Linux[0][j]="http://berenguel.blogspot.com/2009/08/two-weeks-still-loving-fluxbox.html";
 Linux[1][j++]="Two weeks, still loving Fluxbox";
 Linux[0][j]="http://berenguel.blogspot.com/2009/08/fluxbox-backgrounds.html";
@@ -81,7 +94,7 @@ Mac[0]=new Array();
 Mac[1]=new Array();
 j=0;
 Mac[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
-Mac[1][j++]="Whistle control your computer (Linux&amp;Mac) Mac";
+Mac[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Mac[0][j]="http://berenguel.blogspot.com/2009/09/scribuslatex-in-mac-os.html";
 Mac[1][j++]="Scribus+Latex in Mac OS";
 Mac[0][j]="http://berenguel.blogspot.com/2009/05/extremely-useful-mostly-free-mac.html";
@@ -116,7 +129,7 @@ j=0;
 Programming[0][j]="http://berenguel.blogspot.com/2009/12/c-code-juicer.html";
 Programming[1][j++]="C code juicer: detecting copied programming assignments";
 Programming[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
-Programming[1][j++]="Whistle control your computer (Linux&amp;Mac)";
+Programming[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Programming[0][j]="http://berenguel.blogspot.com/2009/09/my-backup-script-in-maclinux.html";
 Programming[1][j++]="My backup script in Mac/Linux";
 Programming[0][j]="http://berenguel.blogspot.com/2009/08/screenshot-via-command-line-in-linux.html";
@@ -395,7 +408,7 @@ Productivity[1][j++]="Procrastination: Causes and cures";
 Productivity[0][j]="http://berenguel.blogspot.com/2010/01/wheriz-where-are-you-in-web-20.html";
 Productivity[1][j++]="Wheriz: where are you in Web2.0";
 Productivity[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
-Productivity[1][j++]="Whistle control your computer";
+Productivity[1][j++]="Control your computer by whistling";
 Productivity[0][j]="http://berenguel.blogspot.com/2009/09/quick-latex-ing-with-emacs.html";
 Productivity[1][j++]="Quick LaTeX-ing with emacs";
 Productivity[0][j]="http://berenguel.blogspot.com/2009/08/two-weeks-still-loving-fluxbox.html";
@@ -480,6 +493,10 @@ function Relateds()
 	    //Hardcoded list length at most 15 element
 	    if(!MaxLength){MaxLength=15;}
 	    document.write('<ul>');
+	    Identifier[0][0]=Featured[0][0];
+	    Identifier[1][0]=Featured[1][0];
+	    Identifier[0][1]=Featured[0][1];
+	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
 		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
