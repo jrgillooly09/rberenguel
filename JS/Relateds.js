@@ -25,9 +25,10 @@ Featured[1]=new Array(2);
 j=0;
 Featured[0][j]="http://berenguel.blogspot.com/2010/03/procrastination-causes-and-cures.html";
 Featured[1][j++]="Procrastination: Causes and cures";
-Featured[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
-Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
-
+Featured[0][j]="http://berenguel.blogspot.com/2010/03/time-management-systems.html";
+Featured[1][j++]="Time management systems";
+// Featured[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
+// Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
 Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][1];
 
