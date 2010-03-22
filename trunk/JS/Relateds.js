@@ -505,9 +505,9 @@ function Relateds()
 	    if(!MaxLength){MaxLength=15;}
 	    document.write('<div style="margin-left: 25px; margin-top: 1em;">');
 	    document.write('<img src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
-	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html">Subscribe to this blog!</a>');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
-	    document.write('<ul>');
+	    document.write('<div style="position: relative; top: -1em;"><ul>');
 	    for(i=0;i<Featured[0].length;i++){
 		document.write('<li><a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a></li>');
 	    }
@@ -519,5 +519,5 @@ function Relateds()
 	    for(i=0;i<NumberOfItemsToShow;i++){
 		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
 	    }
-	    document.write('</ul>');
+	    document.write('</ul></div>');
 	}
