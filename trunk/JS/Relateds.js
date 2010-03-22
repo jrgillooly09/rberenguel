@@ -503,11 +503,18 @@ function Relateds()
 	    //MaxLength is an optional argument
 	    //Hardcoded list length at most 15 element
 	    if(!MaxLength){MaxLength=15;}
+	    document.write('<div style="margin-left: 25px;">');
+	    document.write('<img src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html">Subscribe to this blog!</a>');
+	    document.write('</div>');
 	    document.write('<ul>');
-	    Identifier[0][0]=Featured[0][0];
-	    Identifier[1][0]=Featured[1][0];
-	    Identifier[0][1]=Featured[0][1];
-	    Identifier[1][1]=Featured[1][1];
+	    for(i=0;i<Featured[0].length;i++){
+		document.write('<li><a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a></li>');
+	    }
+// 	    Identifier[0][0]=Featured[0][0];
+// 	    Identifier[1][0]=Featured[1][0];
+// 	    Identifier[0][1]=Featured[0][1];
+// 	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
 		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
