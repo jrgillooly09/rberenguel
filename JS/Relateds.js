@@ -503,11 +503,11 @@ function Relateds()
 	    //MaxLength is an optional argument
 	    //Hardcoded list length at most 15 element
 	    if(!MaxLength){MaxLength=15;}
-	    document.write('<div style="margin-left: 25px; margin-top: 1em;">');
+	    document.write('<div style="margin-top: 1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
-	    document.write('<div style="position: relative; top: -1em;"><ul>');
+	    document.write('<div style="margin-left: -25px; position: relative; top: -1em;"><ul>');
 	    for(i=0;i<Featured[0].length;i++){
 		document.write('<li><a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a></li>');
 	    }
