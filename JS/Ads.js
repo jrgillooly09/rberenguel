@@ -107,7 +107,8 @@ for(i=0;i<MatriuNumImatges.length;i++){
     document.write('<img style="padding: 0 0 0 0; border-width: 2 px; border-style: solid; border-color:  #D0D0D0; width: 220px; "');
     document.write('src="'+ImatgesAtzar[0][MatriuNumImatges[i]]+'" id="idImatge'+i+'" alt="idImatge'+i+'"/></a>');
 }
-document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8006/0a62f6d0-f255-4123-91ad-3aa1a7c36343"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8006%2F0a62f6d0-f255-4123-91ad-3aa1a7c36343&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
+document.write('<br />');
+document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
 document.write("</div>")
 
 
