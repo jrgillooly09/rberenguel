@@ -566,7 +566,10 @@ function Relateds()
 // 	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
-		document.write('<a style=\'padding-left: 15px;\' href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write('<a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
 	    }
 
 	}
+
+
