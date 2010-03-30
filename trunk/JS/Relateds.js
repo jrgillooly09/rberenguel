@@ -32,6 +32,34 @@ Featured[1][j++]="Wasting your time? Tips on time management systems";
 Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
 Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][1];
 
+Highlights=new Array();
+Highlights[0]=new Array();
+Highlights[1]=new Array();
+j=0;
+Highlights[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
+Highlights[1][j++]="Amaze your co-workers: Control your computer by whistling";
+Highlights[0][j]="http://berenguel.blogspot.com/2010/03/procrastination-causes-and-cures.html";
+Highlights[1][j++]="Wasting your time? Procrastination: causes and cures";
+Highlights[0][j]="http://berenguel.blogspot.com/2009/06/lemon-seed-germination.html";
+Highlights[1][j++]="How to germinate lemon seeds";
+Highlights[0][j]="http://berenguel.blogspot.com/2010/03/time-management-systems.html";
+Highlights[1][j++]="Wasting your time? Tips on time management systems";
+Highlights[0][j]="http://berenguel.blogspot.com/2009/12/gluten-free-dark-brown-cane-sugar.html";
+Highlights[1][j++]="Gluten,dairy,egg-free dark brown cane sugar biscuit";
+Highlights[0][j]="http://berenguel.blogspot.com/2010/02/backbreaker.html";
+Highlights[1][j++]="Backbreaker for iPhone/iPod review";
+Highlights[0][j]="http://berenguel.blogspot.com/2010/01/syncing-ipods-vmac-and-linux-emacs-on.html";
+Highlights[1][j++]="Syncing iPod's vMac and Linux: emacs on iPod Touch";
+Highlights[0][j]="http://berenguel.blogspot.com/2008/09/latex-booklets.html";
+Highlights[1][j++]="How to create LaTeX booklets";
+Highlights[0][j]="http://berenguel.blogspot.com/2009/11/scribus-for-mathematical-posters.html";
+Highlights[1][j++]="Scribus for mathematical posters";
+Highlights[0][j]="http://berenguel.blogspot.com/2010/03/forths-create-does-maybe-im-amazed.html";
+Highlights[1][j++]="Forth's CREATE .. DOES> Maybe I'm amazed?";
+Highlights[0][j]="http://berenguel.blogspot.com/2009/07/acer-aspire-one-89-ubuntu-fluxbox.html";
+Highlights[1][j++]="Greatest combination: Acer Aspire One 8.9&#39; + Ubuntu + Fluxbox. Rock your netbook";
+
+
 Cooking=new Array();
 Cooking[0]=new Array();
 Cooking[1]=new Array();
@@ -520,4 +548,25 @@ function Relateds()
 		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
 	    }
 	    document.write('</ul></div>');
+	}
+
+
+	function ParseHighlights(Identifier, MaxLength)
+	{
+	    //MaxLength is an optional argument
+	    //Hardcoded list length at most 15 element
+	    if(!MaxLength){MaxLength=5;}
+	    document.write('<div style="margin-top: 1em;">');
+	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
+	    document.write('</div>');
+// 	    Identifier[0][0]=Featured[0][0];
+// 	    Identifier[1][0]=Featured[1][0];
+// 	    Identifier[0][1]=Featured[0][1];
+// 	    Identifier[1][1]=Featured[1][1];
+	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
+	    for(i=0;i<NumberOfItemsToShow;i++){
+		document.write('<a style=\'padding-left: 15px;\' href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
+	    }
+
 	}
