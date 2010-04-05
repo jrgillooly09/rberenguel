@@ -25,8 +25,10 @@ Featured[1]=new Array(2);
 j=0;
 Featured[0][j]="http://berenguel.blogspot.com/2010/03/procrastination-causes-and-cures.html";
 Featured[1][j++]="Procrastination: Causes and cures";
-Featured[0][j]="http://berenguel.blogspot.com/2010/03/time-management-systems.html";
-Featured[1][j++]="Wasting your time? Tips on time management systems";
+//Featured[0][j]="http://berenguel.blogspot.com/2010/03/time-management-systems.html";
+//Featured[1][j++]="Wasting your time? Tips on time management systems";
+Featured[0][j]="http://berenguel.blogspot.com/2010/03/two-best-mind-mapping-apps-for-iphone.html";
+Featured[1][j++]="The two best mind mapping apps for iPhone";
 // Featured[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
 // Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
@@ -58,7 +60,8 @@ Highlights[0][j]="http://berenguel.blogspot.com/2010/03/forths-create-does-maybe
 Highlights[1][j++]="Forth's CREATE .. DOES> Maybe I'm amazed?";
 Highlights[0][j]="http://berenguel.blogspot.com/2009/07/acer-aspire-one-89-ubuntu-fluxbox.html";
 Highlights[1][j++]="Greatest combination: Acer Aspire One 8.9&#39; + Ubuntu + Fluxbox. Rock your netbook";
-
+Highlights[0][j]="http://berenguel.blogspot.com/2010/03/two-best-mind-mapping-apps-for-iphone.html";
+Highlights[1][j++]="The two best mind mapping apps for iPhone";
 
 Cooking=new Array();
 Cooking[0]=new Array();
@@ -104,10 +107,10 @@ Linux[1][j++]="Cron, diff & wget: Watch changes in a webpage";
 
 Linux[0][j]="http://berenguel.blogspot.com/2010/01/minix-on-ipod-where-linux-started.html";
 Linux[1][j++]="Minix on the iPod: Where Linux started";
-// Linux[0][j]="";
-// Linux[1][j++]="";
-// Linux[0][j]="";
-// Linux[1][j++]="";
+Linux[0][j]="http://www.mostlymaths.net/2010/03/unpacking-my-ben-nanonote.html";
+Linux[1][j++]="Unpacking my Ben NanoNote";
+Linux[0][j]="http://www.mostlymaths.net/2010/04/my-first-port-to-ben-nanonote-gnugo.html";
+Linux[1][j++]="My first port to the Ben NanoNote: gnugo";
 // Linux[0][j]="";
 // Linux[1][j++]="";
 // Linux[0][j]="";
@@ -189,10 +192,10 @@ Programming[0][j]="http://berenguel.blogspot.com/2010/03/forths-create-does-mayb
 Programming[1][j++]="Forth's CREATE .. DOES> Maybe I'm amazed?";
 Programming[0][j]="http://berenguel.blogspot.com/2010/03/learning-forth-by-working-on-raytracer.html";
 Programming[1][j++]="Learning Forth by working on a Raytracer";
-// Programming[0][j]="";
-// Programming[1][j++]="";
-// Programming[0][j]="";
-// Programming[1][j++]="";
+Programming[0][j]="http://www.mostlymaths.net/2010/03/8-reasons-for-re-inventing-wheel-as.html";
+Programming[1][j++]="8 reasons for re-inventing the wheel as a programmer";
+Programming[0][j]="http://www.mostlymaths.net/2010/04/approximating-images-with-randomly.html";
+Programming[1][j++]="Approximating images with randomly placed translucent triangles";
 // Programming[0][j]="";
 // Programming[1][j++]="";
 // Programming[0][j]="";
@@ -237,10 +240,10 @@ iPod[0][j]="http://berenguel.blogspot.com/2010/02/canabalt-for-iphone.html";
 iPod[1][j++]="Canabalt for iPhone";
 iPod[0][j]="http://berenguel.blogspot.com/2010/02/price-vs-playability.html";
 iPod[1][j++]="Price vs playability";
-// iPod[0][j]="";
-// iPod[1][j++]="";
-// iPod[0][j]="";
-// iPod[1][j++]="";
+iPod[0][j]="http://www.mostlymaths.net/2010/03/trundle-ipod-iphone-game-review.html";
+iPod[1][j++]="Trundle iPod / iPhone game review";
+iPod[0][j]="http://www.mostlymaths.net/2010/03/asian-paintings-on-ipod-touch.html";
+iPod[1][j++]="Asian paintings iPhone app sketches";
 // iPod[0][j]="";
 // iPod[1][j++]="";
 // iPod[0][j]="";
@@ -391,6 +394,12 @@ Plants[0][j]="http://berenguel.blogspot.com/2008/07/apple-seed-germination.html"
 Plants[1][j++]="Apple seed germination";
 Plants[0][j]="http://berenguel.blogspot.com/2010/01/lemon-seedlings-around-7-months.html";
 Plants[1][j++]="Lemon seedlings after 7 months";
+Plants[0][j]="http://www.mostlymaths.net/2010/03/reader-hints-on-lemon-seed-germination.html";
+Plants[1][j++]="Reader hints on lemon seed germination";
+//Plants[0][j]="";
+//Plants[1][j++]="";
+//Plants[0][j]="";
+//Plants[1][j++]="";
 //Plants[0][j]="";
 //Plants[1][j++]="";
 
@@ -456,8 +465,8 @@ Productivity[0][j]="http://berenguel.blogspot.com/2010/03/two-best-mind-mapping-
 Productivity[1][j++]="The two best mind mapping apps for iPhone";
 Productivity[0][j]="http://berenguel.blogspot.com/2010/03/love-thy-tools.html";
 Productivity[1][j++]="Love thy tools to maximize your productivity";
-// Productivity[0][j]="";
-// Productivity[1][j++]="";
+Productivity[0][j]="http://www.mostlymaths.net/2010/03/love-thy-tools.html";
+Productivity[1][j++]="Love thy tools to increase your productivity";
 // Productivity[0][j]="";
 // Productivity[1][j++]="";
 // Productivity[0][j]="";
@@ -535,19 +544,15 @@ function Relateds()
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
-	    document.write('<div style="margin-left: -25px; position: relative; top: -1em;"><ul>');
 	    for(i=0;i<Featured[0].length;i++){
-		document.write('<li><a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a></li>');
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write('<a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a><br />');
 	    }
-// 	    Identifier[0][0]=Featured[0][0];
-// 	    Identifier[1][0]=Featured[1][0];
-// 	    Identifier[0][1]=Featured[0][1];
-// 	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
-		document.write('<li><a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a></li>');
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write('<a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
 	    }
-	    document.write('</ul></div>');
 	}
 
 
@@ -560,10 +565,10 @@ function Relateds()
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
-// 	    Identifier[0][0]=Featured[0][0];
-// 	    Identifier[1][0]=Featured[1][0];
-// 	    Identifier[0][1]=Featured[0][1];
-// 	    Identifier[1][1]=Featured[1][1];
+	    // 	    Identifier[0][0]=Featured[0][0];
+	    // 	    Identifier[1][0]=Featured[1][0];
+	    // 	    Identifier[0][1]=Featured[0][1];
+	    // 	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
 		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
