@@ -558,7 +558,7 @@ function Relateds()
 	    //MaxLength is an optional argument
 	    //Hardcoded list length at most 15 element
 	   if(MaxLength>8){MaxLength=5;}
-	    document.write('<br />You may be also interested in:');
+	    document.write('<br /><i>You may be also interested in:</i>');
 	    document.write('<div style="margin-top: 1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
