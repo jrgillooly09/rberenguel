@@ -108,7 +108,8 @@ for(i=0;i<MatriuNumImatges.length;i++){
     document.write('src="'+ImatgesAtzar[0][MatriuNumImatges[i]]+'" id="idImatge'+i+'" alt="idImatge'+i+'"/></a>');
 }
 document.write('<br />');
-document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
+    document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8001/77788e9c-7652-4ddd-bfe9-37f5c65dff3e"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8001%2F77788e9c-7652-4ddd-bfe9-37f5c65dff3e&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
+//document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
 document.write("</div>")
 
 
