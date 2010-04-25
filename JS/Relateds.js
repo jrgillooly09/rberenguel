@@ -128,6 +128,10 @@ Linux[0][j]="http://www.mostlymaths.net/2010/04/another-ben-nanonote-port-pmars.
 Linux[1][j++]="Another Ben Nanonote port: pmars";
 Linux[0][j]="http://www.mostlymaths.net/2010/04/gcal-ultra-powerful-command-line-gnu.html";
 Linux[1][j++]="Gcal: the ultra-powerful command line GNU calendar";
+Linux[0][j]="http://www.mostlymaths.net/2010/04/sed-stream-editor-to-colorise-script.html";
+Linux[1][j++]="sed (stream editor) to colorise script output in Linux";
+// Linux[0][j]="";
+// Linux[1][j++]="";
 // Linux[0][j]="";
 // Linux[1][j++]="";
 // Linux[0][j]="";
@@ -418,8 +422,8 @@ Plants[0][j]="http://berenguel.blogspot.com/2010/01/lemon-seedlings-around-7-mon
 Plants[1][j++]="Lemon seedlings after 7 months";
 Plants[0][j]="http://www.mostlymaths.net/2010/03/reader-hints-on-lemon-seed-germination.html";
 Plants[1][j++]="Reader hints on lemon seed germination";
-//Plants[0][j]="";
-//Plants[1][j++]="";
+Plants[0][j]="http://www.mostlymaths.net/2010/04/earth-day-give-away-project-lemon-trees.html";
+Plants[1][j++]="Earth day give-away project: lemon trees from seed to save the planet";
 //Plants[0][j]="";
 //Plants[1][j++]="";
 //Plants[0][j]="";
@@ -570,7 +574,7 @@ function Relateds()
 	    //Hardcoded list length at most 15 element
 	   if(MaxLength>8){MaxLength=5;}
 	    document.write('<br /><i>You may be also interested in:</i>');
-	    document.write('<div style="margin-top: 1em;">');
+	    document.write('<div style="margin-top: 0.1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
