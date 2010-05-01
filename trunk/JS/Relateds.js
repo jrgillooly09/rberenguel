@@ -23,10 +23,12 @@ Featured=new Array();
 Featured[0]=new Array(2);
 Featured[1]=new Array(2);
 j=0;
+Featured[0][j]="http://www.mostlymaths.net/2010/04/9-programming-books-i-have-read-and.html";
+Featured[1][j++]="9 programming books I have read and somewhat liked...";
 Featured[0][j]="http://www.mostlymaths.net/2010/04/8-reader-reasons-for-re-inventing-wheel.html";
 Featured[1][j++]="8 reader reasons for re-inventing the wheel as a programmer";
-Featured[0][j]="http://www.mostlymaths.net/2010/04/what-broken-windows-theory-has-to-say.html";
-Featured[1][j++]="What the 'broken windows theory' has to say about productivity";
+//Featured[0][j]="http://www.mostlymaths.net/2010/04/what-broken-windows-theory-has-to-say.html";
+//Featured[1][j++]="What the 'broken windows theory' has to say about productivity";
 //Featured[0][j]="http://berenguel.blogspot.com/2010/03/procrastination-causes-and-cures.html";
 //Featured[1][j++]="Procrastination: Causes and cures";
 //Featured[0][j]="http://berenguel.blogspot.com/2010/03/time-management-systems.html";
@@ -130,8 +132,8 @@ Linux[0][j]="http://www.mostlymaths.net/2010/04/gcal-ultra-powerful-command-line
 Linux[1][j++]="Gcal: the ultra-powerful command line GNU calendar";
 Linux[0][j]="http://www.mostlymaths.net/2010/04/sed-stream-editor-to-colorise-script.html";
 Linux[1][j++]="sed (stream editor) to colorise script output in Linux";
-// Linux[0][j]="";
-// Linux[1][j++]="";
+Linux[0][j]="http://www.mostlymaths.net/2010/04/linux-screenshots-made-easy-shutter.html";
+Linux[1][j++]="Linux screenshots made easy: Shutter & Screenie";
 // Linux[0][j]="";
 // Linux[1][j++]="";
 // Linux[0][j]="";
@@ -497,6 +499,12 @@ Productivity[0][j]="http://www.mostlymaths.net/2010/04/book-review-how-to-be-1-v
 Productivity[1][j++]="Book review: How to be #1, by Vince Lombardi";
 Productivity[0][j]="http://www.mostlymaths.net/2010/04/stop-it-no-more-idle-browser-while.html";
 Productivity[1][j++]="STOP IT! No more idle browsing while working";
+Productivity[0][j]="http://www.mostlymaths.net/2010/04/slow-natural-deadly-importance-of.html";
+Productivity[1][j++]="Slow, natural, deadly: The importance of fundamentals";
+// Productivity[0][j]="";
+// Productivity[1][j++]="";
+// Productivity[0][j]="";
+// Productivity[1][j++]="";
 // Productivity[0][j]="";
 // Productivity[1][j++]="";
 // Productivity[0][j]="";
@@ -580,7 +588,7 @@ function Relateds()
 	    document.write('</div>');
 	    for(i=0;i<Featured[0].length;i++){
 		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
-		document.write('<a href="'+Featured[0][i]+'">'+Featured[1][i]+'</a><br />');
+		document.write('<a href="'+Featured[0][i]+'" onClick="pageTracker._trackEvent(\'Featured\',\'FeaturedLink\');">'+Featured[1][i]+'</a><br />');
 	    }
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
