@@ -587,12 +587,12 @@ function Relateds()
 	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
 	    for(i=0;i<Featured[0].length;i++){
-		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
 		document.write('<a href="'+Featured[0][i]+'" onClick="pageTracker._trackEvent(\'Featured\',\'FeaturedLink\');">'+Featured[1][i]+'</a><br />');
 	    }
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
-		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
 		document.write('<a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
 	    }
 	}
@@ -612,7 +612,7 @@ function Relateds()
 	    // 	    Identifier[1][1]=Featured[1][1];
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
-		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://2.bp.blogspot.com/_f3d3llNlZKQ/S6eo3rAunRI/AAAAAAAACBM/kgAIODuhu_I/s00/favicon.png\'</img> ");
+		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
 		document.write('<a href="'+Identifier[0][i]+'">'+Identifier[1][i]+'</a><br />');
 	    }
 
