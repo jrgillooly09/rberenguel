@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/yacas
 	TITLE:=yacas
 	SECTION:=Maths
-	CATEGORY:=Misc
+	CATEGORY:=Maths
 	URL:=http://yacas.sourceforge.net
 endef
 
@@ -54,8 +54,8 @@ define Build/Prepare
 	mv $(PKG_NAME)-$(PKG_VERSION).tar.gz $(PKG_BUILD_DIR)/temporaryyacas/
 	cp Makefile Makefile2
 	tar -C $(PKG_BUILD_DIR)/temporaryyacas/ -xvf  $(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION).tar.gz 
-	patch $(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/configure.in patches/.manmake.patch
-	patch $(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/Makefile.in patches/.manmake2.patch
+	patch $(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/configure.in patches/manmake.pat
+	patch $(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/Makefile.in patches/manmake2.pat
 	$(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/configure 
 	make 	
 	cp Makefile2 Makefile
