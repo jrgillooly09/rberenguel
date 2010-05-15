@@ -1811,7 +1811,7 @@ diff -crB yacas-1.2.2old/src/Makefile.in yacas-1.2.2new/src/Makefile.in
   $(srcdir)/platmath.cpp: fastprimes.c
   
   fastprimes.c: mkfastprimes
-! 	/home/ruben/openwrt-xburst/yacas-test/yacas-1.2.2/src/mkfastprimes > fastprimes.c
+! 	$(PKG_BUILD_DIR)/temporaryyacas/$(PKG_NAME)-$(PKG_VERSION)/src/mkfastprimes > fastprimes.c
   
   clean-compile:
   	test -z "libyacasplatform.a" || rm -rf libyacasplatform.a
