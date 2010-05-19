@@ -45,10 +45,10 @@ vera		be (as in to be)
 voru		were
 geturðu		Can-you?
 einnig		Also
-sé			I
+sé		I
 fjölda		Number
 seinna		Later
-ef			if
+ef		if
 vilt		want
 eins		from one
 hún		she
@@ -81,15 +81,15 @@ seinni		late
 þessa		this
 vegna		due
 varð		was (as in ???)
-tilheyrir		belongs
-ómissandi		critical
+tilheyrir	belongs
+ómissandi	critical
 milli		national
 hana		her 
 vel		well
 inn		in, inside
 þeirra		their
 saman		together
-nú			now
+nú		now
 breyta		change
 unnin		prepared
 þau		they
@@ -97,3 +97,4 @@ hafði		had
 reiknað		calculated
 ljósu		light
 mjög		very
+hjá		by, near, next to, at someone's
