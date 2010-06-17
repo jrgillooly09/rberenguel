@@ -524,6 +524,23 @@ Productivity[1][j++]="Slow, natural, deadly: The importance of fundamentals";
 // Mac[0][j]="";
 // Mac[1][j++]="";
 
+Origami=new Array();
+Origami[0]=new Array();
+Origami[1]=new Array();
+j=0;
+Origami[0][j]="http://www.mostlymaths.net/2008/02/satoshis-pegasus.html";
+Origami[1][j++]="Model: Satoshi's pegasus";
+Origami[0][j]="http://www.mostlymaths.net/2008/03/origami-masks.html";
+Origami[1][j++]="Model: Origami masks";
+Origami[0][j]="http://www.mostlymaths.net/2009/05/how-to-do-easy-origami-cd-case.html";
+Origami[1][j++]="Diagrams: How to do an easy origami CD case";
+Origami[0][j]="http://www.mostlymaths.net/2009/05/stars-and-wheels-andrew-hudson.html";
+Origami[1][j++]="Model: Stars and wheels by Andrew Hudson";
+Origami[0][j]="http://www.mostlymaths.net/2009/05/origami-flower-box-diagrams.html";
+Origami[1][j++]="Diagrams: Origami Flower Box";
+//Origami[0][j]="";
+//Origami[1][j++]="";
+
 // CODE
 
 MergedList=new Array();
