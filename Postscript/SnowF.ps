@@ -1,0 +1,33 @@
+/aleat {rrand srand rand 5 mod abs} bind def
+
+/arm {
+    dup dup
+    neg 0 rmoveto
+    5. div 4 {dup} repeat
+    exch rlineto
+    neg dup rmoveto
+    dup neg rlineto
+    dup neg exch  rmoveto
+    0 rmoveto
+} def
+
+/num {aleat} bind def
+mark
+0 aleat 5 mul 72
+{
+
+} for
+counttomark
+5 {dup} repeat
+6 {copy} repeat
+0 60 300 {
+    newpath
+    gsave
+    144 144 moveto
+    rotate
+    72 0 rlineto
+    {arm} repeat
+    stroke
+    grestore
+}for
+showpage

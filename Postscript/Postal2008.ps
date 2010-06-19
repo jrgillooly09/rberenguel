@@ -1,0 +1,371 @@
+%!PS-Adobe-3.0
+%%BeginFeature: *PageSize A4 
+ << /PageSize [595 842] >> setpagedevice 
+%%EndFeature 
+
+%/PageSize A4
+
+/CoordX 595 def
+/CoordY 842 def
+/RadiMax 95 def
+/Margin 25 def
+/NumThings 900 def
+
+newpath
+    Margin Margin moveto
+    CoordX Margin sub Margin lineto
+    CoordX Margin sub CoordY Margin sub lineto
+    Margin CoordY Margin sub lineto
+    Margin Margin lineto
+closepath
+gsave
+0.08235 0.0352 0.17842 setrgbcolor
+fill
+grestore
+clip
+
+%%% GOSPER-START
+
+%%% Start of L-system definition
+
+/STARTG { FG XG } def
+/XG {
+    %(XG) = stack () =
+    dup 0 eq { DG } { 1 sub 7 {dup} repeat
+    XG +G Y FG +G +G Y FG
+    -G FG XG -G -G FG XG FG
+    XG -G Y FG +G } ifelse pop } bind def
+
+/Y {
+    %(Y) = stack () =
+    dup 0 eq { DG } { 1 sub 7 {dup} repeat
+    -G FG XG +G Y FG Y FG
+    +G +G Y FG +G FG XG -G
+    -G FG XG -G Y } ifelse pop } bind def
+
+/FG {
+    DG
+} bind def
+
+/angleG 60 def
+
+/-G { % rotation to the right 
+  angleG neg rotate
+} bind def
+
+/+G { % rotation to the left
+  angleG rotate
+} bind def
+
+%%% End of L-System definition
+
+/scalefactor {7 sqrt orderG exp} bind def
+
+/DG { 100 1.3 div  scalefactor div 0 rlineto } bind def
+
+%%% Scaling factors
+
+/GosperSize 100 def
+/thickness {1 orderG dup mul div} bind def
+/angleC 27 def
+/orderG 1 def
+
+%%% More scaling factors, angle of rotation depending on
+%%% the order
+
+%%% Draws a radius 100 Gosper Island at 0 0
+
+/Gosper100
+{
+    gsave
+    newpath
+    -400 -400 translate
+    400 400
+    thickness setlinewidth
+    orderG angleC 3 add orderG sub mul
+    cos GosperSize mul sub exch
+    orderG angleC 3 add orderG sub mul
+    sin GosperSize mul sub
+    moveto
+    orderG STARTG
+    Colorize
+    stroke
+    closepath
+    grestore
+} def % Receives nothing
+
+%%% Draws an arbitrary Gosper Island
+
+/Gosper {
+    /orderG exch store
+    gsave
+    3 1 roll
+    translate
+    100 div
+    dup
+    scale
+    rand 360 mod rotate
+    Gosper100
+    grestore
+} def % Receives x y size order
+
+%%% GOSPER-END
+
+%%% KOCH-START
+
+%%% Start of L-system definition
+
+/STARTK { FK +K +K FK +K +K FK} def
+/FK {
+  dup 0 eq
+  { DK }		% if the recursion order ends, draw forward
+  {
+      1 sub		% recurse
+      4 {dup} repeat    % dup the number of parameters (order) needed. 
+      FK -K FK +K +K FK -K FK }
+  ifelse
+  pop			% pop the dup'd order
+} bind def
+
+/angleK 60 def
+
+/-K { % rotation to the right 
+  angleK neg rotate
+} bind def
+
+/+K { % rotation to the left
+  angleK rotate
+} bind def
+
+%%% End of L-System definition
+
+/DK { sizeK  3 orderK exp div 0 rlineto } bind def
+/thicknessK {1 orderK dup mul div} bind def
+
+%%% Scaling factors
+
+/orderK 3 def
+/sizeK 300 def
+
+%%% Draws a Koch's snowflake of radius 180 at 0 0
+
+/Koch180 {
+    gsave
+    newpath
+    thicknessK setlinewidth
+    200 300 60 cos mul add
+    neg
+    200 100 60 sin mul add
+    neg
+    translate
+    200 200 moveto
+    orderK orderK orderK STARTK
+    Colorize
+    stroke
+    closepath
+    grestore
+} def % receives nothing
+
+%%% Draws an arbitrary Koch's snowflake
+
+/Koch {
+    /orderK exch store
+    gsave
+    3 1 roll
+    translate
+    180 div dup scale
+    rand 360 mod rotate
+    Koch180
+    grestore
+} def % Receives x y size order
+
+%%% KOCH-END
+
+%%% LINED-START
+
+%%% Generates a lined star at 0 0 of radius 100
+
+/star100
+{
+    gsave
+    newpath
+    360 exch div dup dup dup dup %Angle
+    cos 100 mul
+    exch sin 100 mul exch
+    5 2 roll 360 add {
+	%(FORRRR) =
+	%stack
+	%(FORRRR) =
+	dup	
+	cos 100 mul
+	exch sin 100 mul exch
+	2 copy
+	0 0 8 6 roll
+	orderL linies
+    } for
+    closepath
+    pop pop
+    Colorize
+    stroke
+    grestore
+} def % Receives Number of Spikes 
+
+/orderL 1 def
+
+/star
+{
+    rand 11 mod 10 add /orderL exch store
+    gsave
+    4 2 roll
+    translate
+    exch
+    100 div dup scale
+    rand 360 mod rotate
+    star100
+    grestore
+} def % Receives Position, Radius, Number of Spikes
+
+/dist
+{
+    sub dup mul
+    3 1 roll
+    sub dup mul
+    add
+    sqrt
+} def
+
+/linies
+{
+    /num exch def
+    /y3 exch def
+    /x3 exch def
+    /y2 exch def
+    /x2 exch def
+    /y1 exch def
+    /x1 exch def
+    /incr 1 num div def
+    0 1 num {
+	/pos exch def
+	x2 x1 sub incr pos mul mul x1 add
+	y2 y1 sub incr pos mul mul y1 add
+	moveto
+	x3 x2 sub incr pos mul mul x2 add
+	y3 y2 sub incr pos mul mul y2 add
+	lineto
+	%stroke
+    } for 
+} def % Receives Point1, centerpoint, Point2, numberOfSegments
+
+%%% LINED-END
+
+/Colorize
+{
+    rand 20 mod 1 add 1 exch div
+    0.3 mul
+    0.2 add
+    rand 20 mod 1 add 1 exch div
+    0.3 mul
+    0.2 add
+    rand 20 mod 1 add 1 exch div
+    0.3 mul
+    0.2 add
+    setrgbcolor
+} def
+
+
+/CouldDraw
+{
+    % stack state xn yn rn xn-1 yn-1 rn-1
+    exch 	%  xn yn rn xn-1 rn-1 yn-1
+    4 index 	% xn yn rn xn-1 rn-1 yn-1 yn
+    sub dup mul	% xn yn rn xn-1 rn-1 (yn-1-yn)^2
+    3 1 roll    % xn yn rn (yn-1-yn)^2 xn-1 rn-1
+    exch	% xn yn rn (yn-1-yn)^2 rn-1 xn-1
+    5 index 	% xn yn rn (yn-1-yn)^2 rn-1 xn-1 xn
+    sub dup mul
+    exch	% xn yn rn (yn-1-yn)^2 (xn-xn-1)^2 rn-1
+    3 1 roll	% xn yn rn rn-1 (yn-1-yn)^2 (xn-xn-1)^2 
+    add sqrt	% xn yn rn rn-1 d(C_n, C_{n-1})
+    exch	% xn yn rn d(C_n, C_{n-1}) rn-1
+    2 index	% xn yn rn d(C_n, C_{n-1}) rn-1 rn
+    add
+    gt
+    {true}{false} ifelse
+    % now the stack loses nothing
+} def
+
+
+
+realtime srand
+1 1 NumThings {
+    /n exch def    		% Counter for the number of elements
+    rand
+    CoordX mod
+    rand
+    CoordY mod			% random coordinates
+    rand
+    RadiMax mod 5 add 		% random radius
+    true
+    1 1 n 1 sub {
+	exch
+	n 3 mul 2 add 1 roll 	% Move the default true to the bottom of
+				% the "coordinate stack, or the previous
+				% true/false condition. Now the stack has
+				% all points and the new point
+	3 mul 4 add		% Start from the bottom of the stack, and add
+				% the current elements. Keep in mind, index
+				% doesn't count the element!
+	dup dup			% We need 3 like this
+	index			% Stack xn yn rn 3m+6 3m+6 xn-1
+	3 1 roll		% Stack xn yn rn xn-1 3m+6 3m+6
+	1 sub
+	index			% Stack xn yn rn xn-1 3m+6 yn-1
+	exch			% Stack xn yn rn xn-1 yn-1 3m+6
+	2 sub
+	index			% Stack xn yn rn xn-1 yn-1 rn-1
+        CouldDraw
+    }for
+    % Now the stack is filled with n-1 true/false conditions and the
+    % 3n elements corresponding to circle coordinates+radii, followed
+    % by the last true/false.
+   
+    n 1 eq {} {
+	3 n mul 1 add 1 roll    % All t/f together
+	n 4 mul 3 n mul roll	% All t/f on top
+	n 1 sub {and} repeat}	% Convert to one condition
+	ifelse
+    
+    {
+	3 copy
+	%3 copy    		% Uncomment this to add bounding circles
+	rand 2 mod
+	1 eq 
+	{
+	    rand 2 mod 1 eq
+	    {
+		rand 6 mod 4 add	% Random number of spikes
+		star	
+	    }
+	    {
+		rand 4 mod 2 add	% Random order, between 2 and 5
+		Koch
+	    } ifelse	    
+	}
+	{
+	    rand 3 mod 2 add	% Random order, between 2 and 4 
+	    Gosper
+	}
+	ifelse
+	%newpath		% Uncomment all these to add bounding circles
+	%0 360 arc
+	%stroke
+	%closepath
+    }
+    {
+	3 {pop} repeat
+	3 copy
+    }
+    ifelse
+} for
+showpage
+
