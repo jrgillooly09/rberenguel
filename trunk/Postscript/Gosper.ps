@@ -1,0 +1,87 @@
+%%% Start of L-system definition
+
+/STARTG { FG XG } def
+/XG {
+    dup 0 eq { DG } { 1 sub 7 {dup} repeat
+    XG +G Y FG +G +G Y FG
+    -G FG XG -G -G FG XG FG
+    XG -G Y FG +G } ifelse pop } bind def
+
+/Y {
+    dup 0 eq { DG } { 1 sub 7 {dup} repeat
+    -G FG XG +G Y FG Y FG
+    +G +G Y FG +G FG XG -G
+    -G FG XG -G Y } ifelse pop } bind def
+/FG {
+    DG
+} bind def
+
+/angleG 60 def
+
+/-G { % rotation to the right 
+  angleG neg rotate
+} bind def
+
+/+G { % rotation to the left
+  angleG rotate
+} bind def
+
+%%% End of L-System definition
+
+/scalefactor {7 sqrt orderG exp} bind def
+
+/DG { 100 1.3 div  scalefactor div 0 rlineto } bind def
+
+%%% Scaling factors
+
+/GosperSize 100 def
+/thickness {1 orderG dup mul div} bind def
+/angleC 27 def
+/orderG 1 def
+
+%%% More scaling factors, angle of rotation depending on
+%%% the order
+
+%%% Draws a radius 100 Gosper Island at 0 0
+
+/Gosper100
+{
+    gsave
+    newpath
+    -400 -400 translate
+    400 400
+    thickness setlinewidth
+    orderG angleC 3 add orderG sub mul
+    cos GosperSize mul sub exch
+    orderG angleC 3 add orderG sub mul
+    sin GosperSize mul sub
+    moveto
+    orderG STARTG
+    stroke
+    closepath
+    grestore
+} def % Receives nothing
+
+%%% Draws an arbitrary Gosper Island
+
+/Gosper {
+    /orderG exch store
+    gsave
+    3 1 roll
+    translate
+    100 div
+    dup
+    scale
+    rand 360 mod rotate
+    Gosper100
+    grestore
+} def % Receives x y size order
+
+%%% Sample, bounded by an arc
+
+351 351 100 4 Gosper
+newpath
+351 351 100 0 360 arc
+stroke
+closepath
+showpage

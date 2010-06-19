@@ -1,0 +1,85 @@
+%!PS-Adobe-2.0
+
+
+
+%%% Generates a lined star at 0 0 of radius 100
+
+/star100
+{
+    gsave
+    newpath
+    360 exch div dup dup dup dup %Angle
+    cos 100 mul
+    exch sin 100 mul exch
+    5 2 roll 360 add {
+	%(FORRRR) =
+	%stack
+	%(FORRRR) =
+	dup	
+	cos 100 mul
+	exch sin 100 mul exch
+	2 copy
+	0 0 8 6 roll
+	orderL linies
+    } for
+    closepath
+    pop pop
+    stroke
+    grestore
+} def % Receives Number of Spikes 
+
+/orderL 1 def
+
+/star
+{
+    rand 11 mod 10 add /orderL exch store
+    gsave
+    4 2 roll
+    translate
+    exch
+    100 div dup scale
+    rand 360 mod rotate
+    star100
+    grestore
+} def % Receives Position, Radius, Number of Spikes
+
+/dist
+{
+    sub dup mul
+    3 1 roll
+    sub dup mul
+    add
+    sqrt
+} def
+
+/linies
+{
+    /num exch def
+    /y3 exch def
+    /x3 exch def
+    /y2 exch def
+    /x2 exch def
+    /y1 exch def
+    /x1 exch def
+    /incr 1 num div def
+    0 1 num {
+	/pos exch def
+	x2 x1 sub incr pos mul mul x1 add
+	y2 y1 sub incr pos mul mul y1 add
+	moveto
+	x3 x2 sub incr pos mul mul x2 add
+	y3 y2 sub incr pos mul mul y2 add
+	lineto
+	%stroke
+    } for 
+} def % Receives Point1, centerpoint, Point2, numberOfSegments
+
+%%% Sample
+(START) =
+stack
+(START2) =
+100 100 200 3 star
+(END) =
+stack
+(END2) =
+showpage
