@@ -100,18 +100,15 @@ function initImatge(imatgeId) {
     SetOpacitat(imatgeId, 0);
     fadeIn(imatgeId,0);
 }
-    document.write('
-<script type="text/javascript"><!--
-google_ad_client = "pub-6611947472850783";
-/* 200x200,20100622,Upper */
-google_ad_slot = "8642874476";
-google_ad_width = 200;
-google_ad_height = 200;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>');
+    document.write('<script type="text/javascript"><!--google_ad_client = "pub-6611947472850783";/* 200x200,20100622,Upper */');
+    document.write('google_ad_slot = "8642874476";');
+    document.write('google_ad_width = 200;');
+    document.write('google_ad_height = 200;');
+    document.write('//-->');
+    document.write('</script>');
+    document.write('<script type="text/javascript"');
+    document.write('src="http://pagead2.googlesyndication.com/pagead/show_ads.js">');
+    document.write('</script>');
     document.write('<div>');
     document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8001/77788e9c-7652-4ddd-bfe9-37f5c65dff3e"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8001%2F77788e9c-7652-4ddd-bfe9-37f5c65dff3e&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
     document.write('<br />');
