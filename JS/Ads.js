@@ -100,18 +100,29 @@ function initImatge(imatgeId) {
     SetOpacitat(imatgeId, 0);
     fadeIn(imatgeId,0);
 }
-    
-document.write('<div>')
+    document.write('
+<script type="text/javascript"><!--
+google_ad_client = "pub-6611947472850783";
+/* 200x200,20100622,Upper */
+google_ad_slot = "8642874476";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>');
+    document.write('<div>');
     document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8001/77788e9c-7652-4ddd-bfe9-37f5c65dff3e"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8001%2F77788e9c-7652-4ddd-bfe9-37f5c65dff3e&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
-document.write('<br />');
-//document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
-for(i=0;i<MatriuNumImatges.length;i++){
-    document.write('<a href="'+ImatgesAtzar[1][MatriuNumImatges[i]]+'" onClick="pageTracker._trackEvent(\'CafePress\',\'Ad'+i+'Click\');">');
-    document.write('<img style="padding: 0 0 0 0; border-width: 2 px; border-style: solid; border-color:  #D0D0D0; width: 220px; "');
-    document.write('src="'+ImatgesAtzar[0][MatriuNumImatges[i]]+'" id="idImatge'+i+'" alt="idImatge'+i+'"/></a>');
-}
-document.write("</div>")
-
+    document.write('<br />');
+    //document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
+    for(i=0;i<MatriuNumImatges.length;i++){
+	document.write('<a href="'+ImatgesAtzar[1][MatriuNumImatges[i]]+'" onClick="pageTracker._trackEvent(\'CafePress\',\'Ad'+i+'Click\');">');
+	document.write('<img style="padding: 0 0 0 0; border-width: 2 px; border-style: solid; border-color:  #D0D0D0; width: 220px; "');
+	document.write('src="'+ImatgesAtzar[0][MatriuNumImatges[i]]+'" id="idImatge'+i+'" alt="idImatge'+i+'"/></a>');
+    }
+    document.write("</div>")
+    
 
 
 function CicleImatges()
