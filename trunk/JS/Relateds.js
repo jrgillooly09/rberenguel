@@ -640,7 +640,7 @@ function Relateds()
 	    document.write('</div>');
 	    for(i=0;i<Featured[0].length;i++){
 		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
-		document.write('<a href="'+Featured[0][i]+'" onClick="pageTracker._trackEvent(\'Featured\',\'FeaturedLink\');">'+Featured[1][i]+'</a><br />');
+		document.write('<a href="'+Featured[0][i]+'" onClick="pageTracker._trackEvent(\'Featured'+i+'\',\'FeaturedLink\');">'+Featured[1][i]+'</a><br />');
 	    }
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
