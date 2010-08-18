@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2009 Ruben Berenguel
 
@@ -24,7 +24,10 @@
 # You can find the most up to date version of this file here
 # http://rberenguel.googlecode.com/svn/trunk/Bash/PageDiffs.sh
 
-# 20091226@00:24
+# 20091226@00:24 Ruben Berenguel
+
+# 20100818@07:10 Steve Almond from silkandslug.com found & solved a
+# sh/bash problem. Suggestion for next revision: emailing diff
 
 MAILRECIPIENT="mail@mail.com"
 
@@ -45,6 +48,7 @@ if [ "$1" = "write" ]; then
 fi
 if [ "$1" = "diff" ]; then
     count=0
+
     for i in "${Pages[@]}"
     do
 	# echo Getting "$i" into Test$count
