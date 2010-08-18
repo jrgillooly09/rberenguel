@@ -29,6 +29,10 @@
 # 20100818@07:10 Steve Almond from silkandslug.com found & solved a
 # sh/bash problem. Suggestion for next revision: emailing diff
 
+# 20100818@07:27 Previous suggestion forced as default. Now there is
+# also the diff in the mail. For the next revision, add a command line
+# switch to enable/disable it.
+
 MAILRECIPIENT="mail@mail.com"
 
 j=0
@@ -57,8 +61,14 @@ if [ "$1" = "diff" ]; then
 	Result=$?
 	if [ "$Result" = "0" ]; then
 	    if [ "$2" = "mail" ]; then
+		echo "******************************************" >> MailCont
 		echo Page at "$i" has changed since last check! >> MailCont
-		mail=1
+		echo Diff follows >> MailCont
+		echo -e "\n\n\n" >> MailCont
+		diff "Test$count" "File$count" >> MailCont
+		echo Diff follows >> MailCont
+		echo "******************************************" >> MailCont
+		mail="1"
 	    fi
 	    echo Page at "$i" has changed since last check!
 	else
