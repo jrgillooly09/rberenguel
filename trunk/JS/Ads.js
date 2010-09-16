@@ -100,6 +100,23 @@ function initImatge(imatgeId) {
     SetOpacitat(imatgeId, 0);
     fadeIn(imatgeId,0);
 }
+document.write('
+<script type="text/javascript">
+ch_client = "rberenguel";
+ch_type = "mpu";
+ch_width = 250;
+ch_height = 250;
+ch_non_contextual = 4;
+ch_vertical ="premium";
+ch_sid = "Chitika";
+var ch_queries = new Array( );
+var ch_selected=Math.floor((Math.random()*ch_queries.length));
+if ( ch_selected < ch_queries.length ) {
+ch_query = ch_queries[ch_selected];
+}
+</script>
+<script  src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript">
+</script>');
     document.write('<div>');
     document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8001/77788e9c-7652-4ddd-bfe9-37f5c65dff3e"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8001%2F77788e9c-7652-4ddd-bfe9-37f5c65dff3e&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
     document.write('<br />');
