@@ -100,22 +100,7 @@ function initImatge(imatgeId) {
     SetOpacitat(imatgeId, 0);
     fadeIn(imatgeId,0);
 }
-document.write('<script type="text/javascript">');
-document.write('ch_client = "rberenguel";');
-document.write('ch_type = "mpu";');
-document.write('ch_width = 250;');
-document.write('ch_height = 250;');
-document.write('ch_non_contextual = 4;');
-document.write('ch_vertical ="premium";');
-document.write('ch_sid = "Chitika";');
-document.write('var ch_queries = new Array( );');
-document.write('var ch_selected=Math.floor((Math.random()*ch_queries.length));');
-document.write('if ( ch_selected < ch_queries.length ) {');
-document.write('ch_query = ch_queries[ch_selected];');
-document.write('}');
-document.write('</script>');
-document.write('<script  src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript">');
-document.write('</script>');
+
 document.write("    <a href='http://www.bookdepository.co.uk?a_aid=mostlymathsdotnet&amp;a_bid=b00da36d'>");
 document.write("    <img alt='The BookDepository' height='125' src='http://affiliates.bookdepository.co.uk/accounts/default1/banners/125-x-125.jpg' title='The BookDepository' width='125'/>");
 document.write("    </a>");
