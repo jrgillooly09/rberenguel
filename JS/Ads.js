@@ -107,7 +107,8 @@ document.write("<span id='change_Powered'>Change.org</span><a>|</a><span id='cha
 // document.write("    <img alt='The BookDepository' height='125' src='http://affiliates.bookdepository.co.uk/accounts/default1/banners/125-x-125.jpg' title='The BookDepository' width='125'/>");
 // document.write("    </a>");
 // document.write("    <img alt='' height='1' src='http://affiliates.bookdepository.co.uk/scripts/imp.php?a_aid=mostlymathsdotnet&amp;a_bid=b00da36d' style='border:0' width='1'/>");
-// document.write('<div>');
+
+document.write('<div>');
     document.write('<SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/rbersblog-20/8001/77788e9c-7652-4ddd-bfe9-37f5c65dff3e"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Frbersblog-20%2F8001%2F77788e9c-7652-4ddd-bfe9-37f5c65dff3e&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>');
     document.write('<br />');
     //document.write('<iframe src="http://rcm.amazon.com/e/cm?t=rbersblog-20&o=1&p=12&l=st1&mode=books&search=programming%2C%20gardening%2C%20cooking&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="300" height="250" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>');
