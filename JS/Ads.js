@@ -101,7 +101,7 @@ function initImatge(imatgeId) {
     fadeIn(imatgeId,0);
 }
 
-document.write("<div id='change_BottomBar'><span id='change_Powered'>Change.org</span><a>|</a><span id='change_Start'>Start <a href='http://www.change.org/petition' target='_blank'>Petition</a></span></div><script type='text/javascript' src='http://www.change.org/widgets/content/petition_scroller_js?width=200&causes=all&color=00B1FF&partner=1654-164'></script>");
+document.write("<span id='change_Powered'>Change.org</span><a>|</a><span id='change_Start'>Start <a href='http://www.change.org/petition' target='_blank'>Petition</a></span><script type='text/javascript' src='http://www.change.org/widgets/content/petition_scroller_js?width=200&causes=all&color=00B1FF&partner=1654-164'></script>");
 
 // document.write("    <a href='http://www.bookdepository.co.uk?a_aid=mostlymathsdotnet&amp;a_bid=b00da36d'>");
 // document.write("    <img alt='The BookDepository' height='125' src='http://affiliates.bookdepository.co.uk/accounts/default1/banners/125-x-125.jpg' title='The BookDepository' width='125'/>");
