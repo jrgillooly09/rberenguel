@@ -101,7 +101,7 @@ function initImatge(imatgeId) {
     fadeIn(imatgeId,0);
 }
 
-document.write('<a href="http://www.mostlymaths.net/2010/09/natural-productivity-review-add.html"><img src="http://4.bp.blogspot.com/_f3d3llNlZKQ/TLniRUwD51I/AAAAAAAACsg/sDk86UDR_Ek/s00/ADD-ad.png"/></a>');
+document.write('');
 
 // document.write("    <a href='http://www.bookdepository.co.uk?a_aid=mostlymathsdotnet&amp;a_bid=b00da36d'>");
 // document.write("    <img alt='The BookDepository' height='125' src='http://affiliates.bookdepository.co.uk/accounts/default1/banners/125-x-125.jpg' title='The BookDepository' width='125'/>");
