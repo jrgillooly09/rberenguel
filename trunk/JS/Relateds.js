@@ -638,11 +638,11 @@ function Relateds()
 	    document.write('<br /><i>You may be also interested in:</i>');
 	    document.write('<div style="margin-top: 0.1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
-	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick=\'_gaq.push([\"_trackEvent\", \"Subscribe\", \"FeaturedLinks\"]);\'><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
 	    for(i=0;i<Featured[0].length;i++){
 		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
-		document.write('<a href="'+Featured[0][i]+'" onClick="pageTracker._trackEvent(\'Featured'+i+'\',\'FeaturedLink\');">'+Featured[1][i]+'</a><br />');
+		document.write('<a href="'+Featured[0][i]+'"onClick=\'_gaq.push([\"_trackEvent\", \"Featured'+i+'\", \"FeaturedLinks\"]);\'">'+Featured[1][i]+'</a><br />');
 	    }
 	    NumberOfItemsToShow=Identifier[0].length<MaxLength?Identifier[0].length:MaxLength;
 	    for(i=0;i<NumberOfItemsToShow;i++){
@@ -658,7 +658,7 @@ function Relateds()
 	    //Hardcoded list length at most 15 element
 	    document.write('<div style="margin-top: 1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
-	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick="pageTracker._trackEvent(\'Subscribe\',\'SubscribeLink\');"><i>Subscribe to this blog!</i></a>');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick=\'_gaq.push([\"_trackEvent\", \"Subscribe\", \"FeaturedLinks\"]);\'><i>Subscribe to this blog!</i></a>');
 	    document.write('</div>');
 	    // 	    Identifier[0][0]=Featured[0][0];
 	    // 	    Identifier[1][0]=Featured[1][0];
