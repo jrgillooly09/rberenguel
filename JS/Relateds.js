@@ -47,6 +47,7 @@ Featured[1][j++]="How I Got More Than 4500 Visits Through Blog Commenting";
 // Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
 Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
 Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][1];
+Featured[1][2]="<i><b>Featured:</b></i> "+Featured[1][2];
 
 Highlights=new Array();
 Highlights[0]=new Array();
