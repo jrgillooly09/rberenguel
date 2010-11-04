@@ -23,8 +23,6 @@ Featured=new Array();
 Featured[0]=new Array(2);
 Featured[1]=new Array(2);
 j=0;
-Featured[0][j]="http://www.mostlymaths.net/p/newsletter.html";
-Featured[1][j++]="Join the oddly newsletter!";
 Featured[0][j]="http://www.mostlymaths.net/2010/04/9-programming-books-i-have-read-and.html";
 Featured[1][j++]="9 Programming Books I Have Read and Somewhat Liked...";
 Featured[0][j]="http://www.mostlymaths.net/2010/10/overwhelmed-with-projects-declare-task.html";
@@ -47,10 +45,9 @@ Featured[1][j++]="How I Got More Than 4500 Visits Through Blog Commenting";
 //Featured[1][j++]="The two best mind mapping apps for iPhone";
 // Featured[0][j]="http://berenguel.blogspot.com/2009/09/whistle-control-your-computer.html";
 // Featured[1][j++]="Control your computer by whistling (Linux&amp;Mac)";
-Featured[1][0]="<b>"+Featured[1][0]+"</b>";
-Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][0];
-Featured[1][2]="<i><b>Featured:</b></i> "+Featured[1][1];
-Featured[1][3]="<i><b>Featured:</b></i> "+Featured[1][2];
+Featured[1][0]="<i><b>Featured:</b></i> "+Featured[1][0];
+Featured[1][1]="<i><b>Featured:</b></i> "+Featured[1][1];
+Featured[1][2]="<i><b>Featured:</b></i> "+Featured[1][2];
 
 Highlights=new Array();
 Highlights[0]=new Array();
@@ -647,8 +644,13 @@ function Relateds()
 	    document.write('<br /><i>You may be also interested in:</i>');
 	    document.write('<div style="margin-top: 0.1em;">');
 	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
-	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick=\'_gaq.push([\"_trackEvent\", \"Subscribe\", \"FeaturedLinks\"]);\'><i>Subscribe to this blog!</i></a>');
+	    document.write('<a href="http://www.mostlymaths.net/p/subscribe.html" onClick=\'_gaq.push([\"_trackEvent\", \"Subscribe\", \"FeaturedLinks\"]);\'><i>Subscribing to this blog...</i></a>');
 	    document.write('</div>');
+	    document.write('<div style="margin-top: 0.1em;">');
+	    document.write('<img style=\'padding: 0px; border: 0px;\'src="http://img1.blogblog.com/img/icon_feed12.png"</img> ');
+	    document.write('<a href="http://www.mostlymaths.net/p/newsletter.html" onClick=\'_gaq.push([\"_trackEvent\", \"Newsletter\", \"FeaturedLinks\"]);\'><i>... or joining the oddly newsletter!</i></a>');
+	    document.write('</div>');
+
 	    for(i=0;i<Featured[0].length;i++){
 		document.write("<img style=\'padding: 0px; border: 0px; width:12px;\'src=\'http://3.bp.blogspot.com/_f3d3llNlZKQ/S-VA4aF2G1I/AAAAAAAACT8/41SMm6kvdqs/s00/favicon.png\'</img> ");
 		document.write('<a href="'+Featured[0][i]+'"onClick=\'_gaq.push([\"_trackEvent\", \"Featured'+i+'\", \"FeaturedLinks\"]);\'">'+Featured[1][i]+'</a><br />');
