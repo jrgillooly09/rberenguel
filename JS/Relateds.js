@@ -27,8 +27,11 @@ Featured[0][j]="http://www.mostlymaths.net/2010/04/9-programming-books-i-have-re
 Featured[1][j++]="9 Programming Books I Have Read and Somewhat Liked...";
 Featured[0][j]="http://www.mostlymaths.net/2010/10/overwhelmed-with-projects-declare-task.html";
 Featured[1][j++]="Overwhelmed With Projets? Declare Task Bankruptcy";
-Featured[0][j]="http://www.mostlymaths.net/2010/11/how-i-got-more-than-4500-visits-through.html";
-Featured[1][j++]="How I Got More Than 4500 Visits Through Blog Commenting";
+Featured[0][j]="http://www.mostlymaths.net/2010/12/emacs-30-day-challenge.html";
+Featured[1][j++]="The emacs 30 Day Challenge: Doing Everything Within emacs for 30 Days";
+
+//Featured[0][j]="http://www.mostlymaths.net/2010/11/how-i-got-more-than-4500-visits-through.html";
+//Featured[1][j++]="How I Got More Than 4500 Visits Through Blog Commenting";
 //Featured[0][j]="http://www.mostlymaths.net/2010/05/life-bookmarking.html";
 //Featured[1][j++]="Life bookmarking and why it could change how you learn";
 //Featured[0][j]="http://www.mostlymaths.net/2010/04/earth-day-give-away-project-lemon-trees.html";
