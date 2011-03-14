@@ -25,8 +25,6 @@ Featured[1]=new Array(2);
 j=0;
 Featured[0][j]="http://www.mostlymaths.net/2010/04/9-programming-books-i-have-read-and.html";
 Featured[1][j++]="9 Programming Books I Have Read and Somewhat Liked...";
-Featured[0][j]="http://www.mostlymaths.net/2010/10/overwhelmed-with-projects-declare-task.html";
-Featured[1][j++]="Overwhelmed With Projets? Declare Task Bankruptcy";
 Featured[0][j]="http://www.mostlymaths.net/2010/12/emacs-30-day-challenge.html";
 Featured[1][j++]="The emacs 30 Day Challenge";
 
