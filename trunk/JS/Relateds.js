@@ -25,8 +25,10 @@ Featured[1]=new Array(2);
 j=0;
 Featured[0][j]="http://www.mostlymaths.net/2010/04/9-programming-books-i-have-read-and.html";
 Featured[1][j++]="9 Programming Books I Have Read and Somewhat Liked...";
-Featured[0][j]="http://www.mostlymaths.net/2010/12/emacs-30-day-challenge.html";
-Featured[1][j++]="The emacs 30 Day Challenge";
+Featured[0][j]="http://www.mostlymaths.net/2011/03/learn-to-remember-everything-memory.html";
+Featured[1][j++]="Learn to Remember Everything: The Memory Palace Technique";
+//Featured[0][j]="http://www.mostlymaths.net/2010/12/emacs-30-day-challenge.html";
+//Featured[1][j++]="The emacs 30 Day Challenge";
 
 //Featured[0][j]="http://www.mostlymaths.net/2010/11/how-i-got-more-than-4500-visits-through.html";
 //Featured[1][j++]="How I Got More Than 4500 Visits Through Blog Commenting";
